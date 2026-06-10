@@ -8,244 +8,179 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
 *{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --g:#00d4aa;--g2:#00a8ff;
-  --dark:#080c10;--card:#0e1318;--border:#1e2832;
-  --text:#f0f6fc;--muted:#7d8fa3;
-  --grad:linear-gradient(135deg,var(--g),var(--g2));
-}
+:root{--g:#00d4aa;--g2:#00a8ff;--dark:#080c10;--card:#0e1318;--border:#1e2832;--text:#f0f6fc;--muted:#7d8fa3;--grad:linear-gradient(135deg,var(--g),var(--g2))}
 html{scroll-behavior:smooth}
 body{font-family:'Inter',system-ui,sans-serif;background:var(--dark);color:var(--text);overflow-x:hidden}
 ::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:#0e1318}::-webkit-scrollbar-thumb{background:#1e2832;border-radius:3px}
 
+/* TOP BAR */
+.topbar{background:var(--grad);text-align:center;padding:10px 20px;font-size:.82rem;font-weight:700;color:#000;display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap}
+.topbar-code{background:rgba(0,0,0,.18);padding:3px 10px;border-radius:5px;font-weight:900;letter-spacing:.05em}
+
 /* NAV */
-nav{position:fixed;top:0;width:100%;z-index:200;padding:0 6%;height:64px;display:flex;align-items:center;justify-content:space-between;transition:.3s;background:rgba(8,12,16,.9);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,.06)}
+nav{position:sticky;top:0;width:100%;z-index:200;padding:0 6%;height:64px;display:flex;align-items:center;justify-content:space-between;background:rgba(8,12,16,.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,.06)}
 .logo{display:flex;align-items:center;gap:10px;text-decoration:none}
-.logo-icon{width:36px;height:36px;background:var(--grad);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.1rem}
+.logo-icon{width:36px;height:36px;background:var(--grad);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.2rem}
 .logo-text{font-size:1.2rem;font-weight:800;color:var(--text)}
 .logo-text span{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 .nav-links{display:flex;gap:32px;list-style:none}
 .nav-links a{color:var(--muted);text-decoration:none;font-size:.88rem;font-weight:500;transition:.2s}
 .nav-links a:hover{color:var(--text)}
-.nav-right{display:flex;gap:12px;align-items:center}
+.nav-right{display:flex;gap:10px;align-items:center}
 .cart-btn{display:flex;align-items:center;gap:8px;background:var(--card);border:1px solid var(--border);color:var(--text);padding:8px 16px;border-radius:10px;cursor:pointer;font-size:.85rem;font-weight:600;transition:.2s}
 .cart-btn:hover{border-color:var(--g)}
-.cart-dot{background:var(--g);color:#000;border-radius:50%;width:20px;height:20px;font-size:.7rem;font-weight:800;display:flex;align-items:center;justify-content:center}
+.cart-count{background:var(--g);color:#000;border-radius:50%;width:20px;height:20px;font-size:.7rem;font-weight:800;display:flex;align-items:center;justify-content:center}
 .cta-nav{background:var(--grad);color:#000;padding:8px 20px;border-radius:10px;text-decoration:none;font-weight:700;font-size:.85rem;transition:.2s}
 .cta-nav:hover{opacity:.9;transform:translateY(-1px)}
 
-/* TOP BAR */
-.topbar{background:var(--grad);text-align:center;padding:10px;font-size:.82rem;font-weight:700;color:#000;position:relative;z-index:201}
-.topbar span{background:rgba(0,0,0,.15);padding:2px 8px;border-radius:4px;margin-left:8px}
-
 /* HERO */
-.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 6% 60px;position:relative;overflow:hidden}
-.hero::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(ellipse 60% 40% at 50% 30%,rgba(0,212,170,.12),transparent 70%);pointer-events:none}
-.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(0,212,170,.1);border:1px solid rgba(0,212,170,.25);color:var(--g);padding:6px 16px;border-radius:100px;font-size:.78rem;font-weight:600;margin-bottom:24px;animation:fadeUp .6s ease}
-.hero-badge::before{content:'●';animation:pulse 2s infinite}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
-.hero h1{font-size:clamp(2.4rem,6vw,4.2rem);font-weight:900;line-height:1.1;margin-bottom:20px;animation:fadeUp .6s .1s ease both}
-.hero h1 .grad{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.hero p{font-size:1.1rem;color:var(--muted);max-width:540px;line-height:1.7;margin-bottom:36px;animation:fadeUp .6s .2s ease both}
-.hero-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;animation:fadeUp .6s .3s ease both}
-.btn{padding:14px 28px;border-radius:12px;font-weight:700;font-size:.95rem;text-decoration:none;border:none;cursor:pointer;transition:.25s;display:inline-flex;align-items:center;gap:8px}
+.hero{min-height:92vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:60px 6%;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 50% 30%,rgba(0,212,170,.13),transparent 70%);pointer-events:none}
+.badge-live{display:inline-flex;align-items:center;gap:8px;background:rgba(0,212,170,.1);border:1px solid rgba(0,212,170,.25);color:var(--g);padding:6px 18px;border-radius:100px;font-size:.78rem;font-weight:700;margin-bottom:28px}
+.live-dot{width:7px;height:7px;border-radius:50%;background:#00d4aa;animation:pulse 1.5s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.8)}}
+.hero h1{font-size:clamp(2.6rem,6vw,4.5rem);font-weight:900;line-height:1.08;margin-bottom:22px}
+.hero h1 em{font-style:normal;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero-sub{font-size:1.1rem;color:var(--muted);max-width:520px;line-height:1.75;margin-bottom:40px}
+.hero-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:60px}
+.btn{padding:14px 30px;border-radius:12px;font-weight:700;font-size:.95rem;text-decoration:none;border:none;cursor:pointer;transition:.25s;display:inline-flex;align-items:center;gap:8px}
 .btn-grad{background:var(--grad);color:#000}
-.btn-grad:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,212,170,.3)}
-.btn-outline{border:1px solid var(--border);color:var(--text);background:transparent}
-.btn-outline:hover{background:var(--card);border-color:var(--g)}
-.hero-img{margin-top:60px;display:flex;gap:16px;justify-content:center;flex-wrap:wrap;animation:fadeUp .6s .4s ease both}
-.hero-card-mini{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:16px 20px;display:flex;align-items:center;gap:12px;font-size:.85rem}
-.hero-card-mini .icon{font-size:1.6rem}
-.hero-card-mini strong{display:block;font-weight:700}
-.hero-card-mini span{color:var(--muted);font-size:.78rem}
-@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.btn-grad:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(0,212,170,.35)}
+.btn-ghost{border:1px solid var(--border);color:var(--text);background:transparent}
+.btn-ghost:hover{background:var(--card);border-color:var(--g)}
+.trust-row{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+.trust-pill{background:var(--card);border:1px solid var(--border);border-radius:50px;padding:10px 20px;display:flex;align-items:center;gap:10px;font-size:.83rem;font-weight:600}
+.trust-pill .ti{font-size:1.2rem}
 
 /* MARQUEE */
-.marquee-wrap{overflow:hidden;padding:20px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:rgba(14,19,24,.8)}
-.marquee-track{display:flex;gap:48px;animation:marquee 20s linear infinite;width:max-content}
+.marquee-wrap{overflow:hidden;padding:18px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:rgba(14,19,24,.9)}
+.marquee-track{display:flex;gap:48px;animation:scroll 25s linear infinite;width:max-content}
 .marquee-track:hover{animation-play-state:paused}
-.marquee-item{display:flex;align-items:center;gap:10px;color:var(--muted);font-size:.85rem;font-weight:500;white-space:nowrap}
-.marquee-item .dot{width:6px;height:6px;border-radius:50%;background:var(--g)}
-@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.mitem{display:flex;align-items:center;gap:10px;color:var(--muted);font-size:.84rem;font-weight:500;white-space:nowrap}
+.mitem .dot{width:5px;height:5px;border-radius:50%;background:var(--g)}
+@keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
 /* STATS */
-.stats-section{padding:60px 6%;display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1px;background:var(--border);max-width:1100px;margin:0 auto;border-radius:20px;overflow:hidden}
-.stat-box{background:var(--card);padding:32px 20px;text-align:center}
-.stat-box .num{font-size:2.2rem;font-weight:900;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.stat-box .lbl{color:var(--muted);font-size:.82rem;margin-top:4px}
+.stats-bar{max-width:1100px;margin:0 auto;padding:0 6%;display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:var(--border);border-radius:20px;overflow:hidden}
+.stat{background:var(--card);padding:28px 20px;text-align:center}
+.stat-n{font-size:2rem;font-weight:900;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.stat-l{color:var(--muted);font-size:.8rem;margin-top:4px}
 
-/* CATEGORIES */
+/* SECTION */
 .section{padding:80px 6%;max-width:1200px;margin:0 auto}
-.section-tag{color:var(--g);font-size:.78rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px}
+.stag{color:var(--g);font-size:.75rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;margin-bottom:10px}
 .section h2{font-size:2rem;font-weight:800;margin-bottom:8px}
-.section .sub{color:var(--muted);font-size:.95rem;margin-bottom:48px}
-.cats{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:40px}
-.cat{padding:8px 20px;border-radius:100px;border:1px solid var(--border);color:var(--muted);font-size:.85rem;cursor:pointer;transition:.2s;background:transparent}
-.cat:hover,.cat.active{background:rgba(0,212,170,.1);border-color:var(--g);color:var(--g)}
-
-/* PRODUKTY */
-.products{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px}
-.card{background:var(--card);border:1px solid var(--border);border-radius:18px;overflow:hidden;transition:.3s;cursor:pointer;position:relative}
-.card:hover{border-color:var(--g);transform:translateY(-6px);box-shadow:0 20px 50px rgba(0,212,170,.15)}
-.card-badge{position:absolute;top:14px;left:14px;z-index:2;padding:5px 12px;border-radius:8px;font-size:.72rem;font-weight:800;letter-spacing:.03em}
-.badge-sale{background:#ff4455;color:#fff}
-.badge-new{background:var(--grad);color:#000}
-.badge-hit{background:#ffd700;color:#000}
-
-/* PRODUCT IMAGE AREA */
-.card-media{height:200px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
-.prod-img-wrap{width:140px;height:140px;position:relative;z-index:1;display:flex;align-items:center;justify-content:center}
-.prod-bg-glow{position:absolute;width:160px;height:160px;border-radius:50%;opacity:.25;filter:blur(30px)}
-
-/* Masażer */
-.massager-img{position:relative;width:100px;height:130px}
-.massager-body{position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:32px;height:100px;background:linear-gradient(180deg,#2a3a4a,#1a2530);border-radius:16px;border:2px solid #3a4a5a}
-.massager-head{position:absolute;top:0;left:50%;transform:translateX(-50%);width:24px;height:40px;background:linear-gradient(180deg,#00d4aa,#00a8ff);border-radius:12px;box-shadow:0 0 20px rgba(0,212,170,.6)}
-.massager-grip{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);width:38px;height:12px;background:#151d26;border-radius:6px;border:1px solid #2a3a4a}
-.massager-btn{position:absolute;top:45px;left:50%;transform:translateX(-50%);width:10px;height:10px;border-radius:50%;background:#00d4aa;box-shadow:0 0 8px rgba(0,212,170,.8)}
-
-/* Lampka */
-.lamp-img{position:relative;width:100px;height:130px;display:flex;flex-direction:column;align-items:center;justify-content:flex-end}
-.lamp-shade{width:0;height:0;border-left:40px solid transparent;border-right:40px solid transparent;border-bottom:55px solid;border-bottom-color:rgba(0,212,170,.4);position:absolute;top:10px;left:50%;transform:translateX(-50%);filter:drop-shadow(0 0 15px rgba(0,200,255,.6))}
-.lamp-shade::after{content:'';position:absolute;top:10px;left:-30px;width:0;height:0;border-left:30px solid transparent;border-right:30px solid transparent;border-bottom:40px solid rgba(0,212,170,.2)}
-.lamp-stem{width:6px;height:40px;background:linear-gradient(180deg,#3a4a5a,#2a3a4a);position:absolute;bottom:15px;left:50%;transform:translateX(-50%);border-radius:3px}
-.lamp-base{width:50px;height:10px;background:linear-gradient(90deg,#2a3a4a,#3a4a5a,#2a3a4a);border-radius:5px;position:absolute;bottom:5px;left:50%;transform:translateX(-50%)}
-.lamp-glow{position:absolute;top:20px;left:50%;transform:translateX(-50%);width:60px;height:60px;border-radius:50%;background:radial-gradient(circle,rgba(0,212,170,.5),transparent 70%);animation:lampPulse 2s ease-in-out infinite}
-@keyframes lampPulse{0%,100%{opacity:.6;transform:translateX(-50%) scale(1)}50%{opacity:1;transform:translateX(-50%) scale(1.2)}}
-
-/* Korektor */
-.posture-img{position:relative;width:100px;height:130px;display:flex;align-items:center;justify-content:center}
-.posture-body{width:70px;height:90px;background:linear-gradient(135deg,#1e3a4a,#0e2030);border-radius:35px 35px 20px 20px;border:2px solid #2a4a5a;position:relative;display:flex;align-items:center;justify-content:center}
-.posture-screen{width:40px;height:50px;background:linear-gradient(135deg,#001a2a,#002a3a);border-radius:6px;border:1px solid #00d4aa;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px}
-.posture-line{height:3px;border-radius:2px;background:linear-gradient(90deg,var(--g),var(--g2))}
-.posture-dot{width:10px;height:10px;border-radius:50%;background:var(--g);box-shadow:0 0 8px rgba(0,212,170,.8);animation:blinkDot 1.5s ease-in-out infinite}
-@keyframes blinkDot{0%,100%{opacity:1}50%{opacity:.3}}
-.posture-strap{position:absolute;top:-5px;left:-15px;width:100px;height:8px;background:linear-gradient(90deg,#2a3a4a,#1a2530,#2a3a4a);border-radius:4px}
-
-/* Ładowarka */
-.charger-img{position:relative;width:110px;height:110px;display:flex;align-items:center;justify-content:center}
-.charger-pad{width:100px;height:75px;background:linear-gradient(135deg,#0e2030,#1a3040);border-radius:20px;border:2px solid #2a4050;position:relative;display:flex;align-items:center;justify-content:space-around;padding:0 10px}
-.charger-slot{width:26px;height:26px;border-radius:8px;border:2px solid;display:flex;align-items:center;justify-content:center;font-size:14px}
-.charger-slot.phone{border-color:#00d4aa;background:rgba(0,212,170,.1)}
-.charger-slot.watch{border-color:#00a8ff;background:rgba(0,168,255,.1)}
-.charger-slot.buds{border-color:#7b2fff;background:rgba(123,47,255,.1)}
-.charger-lightning{position:absolute;bottom:-15px;left:50%;transform:translateX(-50%);font-size:18px;animation:bolt 1s ease-in-out infinite}
-@keyframes bolt{0%,100%{opacity:1;transform:translateX(-50%) scale(1)}50%{opacity:.5;transform:translateX(-50%) scale(.8)}}
-
-/* Butelka */
-.bottle-img{position:relative;width:60px;height:130px;display:flex;flex-direction:column;align-items:center}
-.bottle-cap{width:30px;height:20px;background:linear-gradient(135deg,#00d4aa,#00a8ff);border-radius:8px 8px 0 0}
-.bottle-neck{width:22px;height:15px;background:linear-gradient(90deg,#0e2a3a,#1a3a4a);margin-top:0}
-.bottle-body{width:50px;height:90px;background:linear-gradient(135deg,#0a2535,#1a3545);border-radius:8px 8px 12px 12px;position:relative;overflow:hidden;border:1.5px solid #2a4050}
-.bottle-water{position:absolute;bottom:0;width:100%;background:linear-gradient(180deg,rgba(0,212,170,.4),rgba(0,168,255,.3));border-radius:0 0 10px 10px;animation:waterLevel 3s ease-in-out infinite}
-@keyframes waterLevel{0%,100%{height:55%}50%{height:65%}}
-.bottle-uv{position:absolute;top:8px;right:6px;width:12px;height:12px;border-radius:50%;background:rgba(120,220,255,.9);box-shadow:0 0 10px rgba(100,200,255,.8);animation:uvPulse 2s ease-in-out infinite}
-@keyframes uvPulse{0%,100%{opacity:.8;box-shadow:0 0 10px rgba(100,200,255,.8)}50%{opacity:1;box-shadow:0 0 18px rgba(100,200,255,1)}}
-
-/* Organizer */
-.organizer-img{position:relative;width:120px;height:110px;display:flex;align-items:flex-end;justify-content:center;gap:6px}
-.org-slot{background:linear-gradient(180deg,#1a2a3a,#0e1a28);border:1.5px solid #2a3a4a;border-radius:6px;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding:4px 4px 6px;position:relative;overflow:hidden}
-.org-slot::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--grad);opacity:.6;border-radius:4px 4px 0 0}
-.slot-wide{width:36px;height:80px}
-.slot-mid{width:28px;height:65px}
-.slot-small{width:22px;height:50px}
-.org-item{width:80%;height:6px;border-radius:3px;margin-bottom:3px;opacity:.8}
-
-.card-body{padding:18px}
-.card-body h3{font-weight:700;font-size:.95rem;margin-bottom:6px}
-.card-body .desc{font-size:.8rem;color:var(--muted);line-height:1.5;margin-bottom:14px}
-.card-footer{display:flex;align-items:center;justify-content:space-between}
-.prices{display:flex;flex-direction:column}
-.price-now{font-size:1.25rem;font-weight:800;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.price-was{font-size:.75rem;color:var(--muted);text-decoration:line-through}
-.add-cart{width:42px;height:42px;border-radius:10px;background:var(--grad);border:none;cursor:pointer;font-size:1.1rem;transition:.2s;display:flex;align-items:center;justify-content:center;color:#000;font-weight:800}
-.add-cart:hover{transform:scale(1.1);box-shadow:0 4px 16px rgba(0,212,170,.4)}
-.stars-row{display:flex;gap:2px;margin-bottom:10px;align-items:center}
-.stars-row span{color:#ffc107;font-size:.85rem}
-.stars-row small{color:var(--muted);font-size:.75rem;margin-left:4px}
-.stock-bar{margin-top:10px}
-.stock-label{display:flex;justify-content:space-between;font-size:.72rem;color:var(--muted);margin-bottom:4px}
-.bar{height:4px;background:var(--border);border-radius:2px;overflow:hidden}
-.bar-fill{height:100%;background:var(--grad);border-radius:2px}
+.section .sub{color:var(--muted);font-size:.95rem;margin-bottom:40px}
 
 /* COUNTDOWN */
-.countdown-wrap{background:rgba(0,212,170,.05);border:1px solid rgba(0,212,170,.2);border-radius:16px;padding:20px 24px;margin-bottom:40px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
-.countdown-label{font-size:.82rem;color:var(--muted);font-weight:600}
-.countdown-label strong{color:var(--g);font-size:.95rem}
-.countdown-timer{display:flex;gap:12px}
-.cd-unit{text-align:center;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:8px 16px;min-width:60px}
-.cd-unit .cd-num{font-size:1.5rem;font-weight:900;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;display:block}
-.cd-unit .cd-lbl{font-size:.65rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+.flash-bar{background:rgba(0,212,170,.05);border:1px solid rgba(0,212,170,.2);border-radius:16px;padding:20px 28px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;margin-bottom:36px}
+.flash-label{font-size:.88rem;color:var(--muted)}
+.flash-label strong{color:var(--text);font-size:1rem}
+.cd{display:flex;gap:10px}
+.cd-box{text-align:center;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:8px 16px;min-width:58px}
+.cd-n{font-size:1.5rem;font-weight:900;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;display:block;line-height:1}
+.cd-l{font-size:.6rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-top:4px}
 
-/* FEATURES */
-.features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
-.feat-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:28px;transition:.3s}
-.feat-card:hover{border-color:var(--g);transform:translateY(-3px)}
-.feat-icon{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.6rem;margin-bottom:16px;background:rgba(0,212,170,.1)}
-.feat-card h4{font-weight:700;margin-bottom:8px}
-.feat-card p{font-size:.82rem;color:var(--muted);line-height:1.6}
+/* FILTER */
+.cats{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:32px}
+.cat{padding:8px 20px;border-radius:100px;border:1px solid var(--border);color:var(--muted);font-size:.84rem;cursor:pointer;transition:.2s;background:transparent;user-select:none}
+.cat.active,.cat:hover{background:rgba(0,212,170,.1);border-color:var(--g);color:var(--g)}
+
+/* PRODUCTS GRID */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:18px;overflow:hidden;transition:.3s;cursor:pointer;position:relative}
+.card:hover{border-color:var(--g);transform:translateY(-6px);box-shadow:0 20px 50px rgba(0,212,170,.14)}
+.card-badge{position:absolute;top:14px;left:14px;z-index:2;padding:5px 12px;border-radius:8px;font-size:.72rem;font-weight:800;letter-spacing:.03em}
+.b-hot{background:#ff4455;color:#fff}
+.b-new{background:var(--grad);color:#000}
+.b-sale{background:#ffd700;color:#000}
+
+/* PRODUCT IMAGE */
+.card-img{height:220px;overflow:hidden;position:relative;background:#0a1520}
+.card-img img{width:100%;height:100%;object-fit:cover;transition:.4s}
+.card:hover .card-img img{transform:scale(1.06)}
+.img-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,transparent 60%,rgba(8,12,16,.7));pointer-events:none}
+
+.card-body{padding:18px}
+.card-body h3{font-weight:700;font-size:.95rem;margin-bottom:6px;line-height:1.3}
+.card-body .desc{font-size:.8rem;color:var(--muted);line-height:1.55;margin-bottom:12px}
+.stars{color:#ffc107;font-size:.85rem}
+.stars small{color:var(--muted);font-size:.75rem;margin-left:4px}
+.stock-row{margin:10px 0 0}
+.stock-top{display:flex;justify-content:space-between;font-size:.72rem;color:var(--muted);margin-bottom:4px}
+.bar{height:4px;background:var(--border);border-radius:2px;overflow:hidden}
+.bar-f{height:100%;background:var(--grad);border-radius:2px}
+.card-foot{display:flex;align-items:center;justify-content:space-between;margin-top:14px}
+.price-now{font-size:1.3rem;font-weight:900;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1}
+.price-was{font-size:.73rem;color:var(--muted);text-decoration:line-through;margin-top:2px}
+.add-btn{width:44px;height:44px;border-radius:11px;background:var(--grad);border:none;cursor:pointer;font-size:1.3rem;font-weight:900;color:#000;transition:.2s;display:flex;align-items:center;justify-content:center;line-height:1}
+.add-btn:hover{transform:scale(1.12);box-shadow:0 4px 18px rgba(0,212,170,.4)}
 
 /* HOW IT WORKS */
-.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;position:relative}
-.step{text-align:center;padding:32px 20px}
-.step-num{width:52px;height:52px;border-radius:50%;background:var(--grad);color:#000;font-weight:900;font-size:1.2rem;display:flex;align-items:center;justify-content:center;margin:0 auto 16px}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:20px}
+.step{text-align:center;padding:30px 20px}
+.step-n{width:52px;height:52px;border-radius:50%;background:var(--grad);color:#000;font-weight:900;font-size:1.2rem;display:flex;align-items:center;justify-content:center;margin:0 auto 16px}
 .step h4{font-weight:700;margin-bottom:8px}
 .step p{font-size:.82rem;color:var(--muted);line-height:1.5}
 
+/* FEATURES */
+.feat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:16px}
+.feat{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:28px;transition:.3s}
+.feat:hover{border-color:var(--g);transform:translateY(-3px)}
+.feat-ico{width:52px;height:52px;border-radius:14px;background:rgba(0,212,170,.1);display:flex;align-items:center;justify-content:center;font-size:1.6rem;margin-bottom:16px}
+.feat h4{font-weight:700;margin-bottom:8px}
+.feat p{font-size:.82rem;color:var(--muted);line-height:1.6}
+
 /* REVIEWS */
-.reviews-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
-.review-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:24px;transition:.3s}
-.review-card:hover{border-color:rgba(0,212,170,.3)}
-.review-top{display:flex;align-items:center;gap:12px;margin-bottom:14px}
-.avatar{width:40px;height:40px;border-radius:50%;background:var(--grad);display:flex;align-items:center;justify-content:center;font-weight:800;color:#000;font-size:.9rem}
+.rev-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
+.rev{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:24px;transition:.3s}
+.rev:hover{border-color:rgba(0,212,170,.3)}
+.rev-top{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.ava{width:42px;height:42px;border-radius:50%;background:var(--grad);display:flex;align-items:center;justify-content:center;font-weight:800;color:#000;font-size:.9rem;flex-shrink:0}
 .rev-name{font-weight:700;font-size:.9rem}
-.rev-date{font-size:.75rem;color:var(--muted)}
+.rev-loc{font-size:.75rem;color:var(--muted)}
 .rev-stars{color:#ffc107;font-size:.85rem;margin-bottom:10px}
-.rev-text{font-size:.85rem;color:var(--muted);line-height:1.6}
-.verified{display:flex;align-items:center;gap:4px;margin-top:10px;font-size:.72rem;color:var(--g)}
+.rev-txt{font-size:.85rem;color:var(--muted);line-height:1.65;font-style:italic}
+.rev-ok{display:flex;align-items:center;gap:4px;margin-top:10px;font-size:.72rem;color:var(--g);font-weight:600}
 
 /* CTA BANNER */
-.cta-banner{margin:0 6%;background:var(--grad);border-radius:24px;padding:60px 48px;display:flex;justify-content:space-between;align-items:center;gap:32px;flex-wrap:wrap}
-.cta-banner h2{font-size:1.8rem;font-weight:800;color:#000;max-width:400px}
-.cta-banner p{color:rgba(0,0,0,.7);margin-top:8px;font-size:.95rem}
-.btn-dark{background:#000;color:#fff;padding:14px 32px;border-radius:12px;text-decoration:none;font-weight:700;transition:.2s}
+.cta-band{margin:0 6%;background:var(--grad);border-radius:24px;padding:56px 48px;display:flex;justify-content:space-between;align-items:center;gap:32px;flex-wrap:wrap}
+.cta-band h2{font-size:1.8rem;font-weight:800;color:#000}
+.cta-band p{color:rgba(0,0,0,.65);margin-top:8px;font-size:.95rem}
+.btn-dark{background:#000;color:#fff;padding:14px 32px;border-radius:12px;text-decoration:none;font-weight:700;transition:.2s;white-space:nowrap}
 .btn-dark:hover{background:#111;transform:translateY(-2px)}
 
 /* NEWSLETTER */
 .newsletter{padding:80px 6%;text-align:center}
 .newsletter h2{font-size:1.8rem;font-weight:800;margin-bottom:12px}
 .newsletter p{color:var(--muted);margin-bottom:32px}
-.email-form{display:flex;gap:10px;justify-content:center;max-width:480px;margin:0 auto;flex-wrap:wrap}
-.email-form input{flex:1;min-width:200px;padding:14px 20px;background:var(--card);border:1px solid var(--border);border-radius:12px;color:var(--text);font-size:.95rem;outline:none}
-.email-form input:focus{border-color:var(--g)}
-.email-form button{background:var(--grad);color:#000;border:none;padding:14px 24px;border-radius:12px;font-weight:700;cursor:pointer;white-space:nowrap}
+.nl-form{display:flex;gap:10px;justify-content:center;max-width:460px;margin:0 auto;flex-wrap:wrap}
+.nl-form input{flex:1;min-width:200px;padding:14px 20px;background:var(--card);border:1px solid var(--border);border-radius:12px;color:var(--text);font-size:.95rem;outline:none}
+.nl-form input:focus{border-color:var(--g)}
+.nl-form button{background:var(--grad);color:#000;border:none;padding:14px 24px;border-radius:12px;font-weight:700;cursor:pointer}
 
 /* FOOTER */
 footer{background:var(--card);border-top:1px solid var(--border);padding:48px 6% 24px}
-.footer-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:32px;margin-bottom:40px}
-.footer-brand p{color:var(--muted);font-size:.85rem;margin-top:12px;line-height:1.6}
-.footer-col h5{font-weight:700;margin-bottom:16px;font-size:.9rem}
-.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:10px}
-.footer-col a{color:var(--muted);text-decoration:none;font-size:.85rem;transition:.2s}
-.footer-col a:hover{color:var(--g)}
-.footer-bottom{border-top:1px solid var(--border);padding-top:20px;display:flex;justify-content:space-between;align-items:center;color:var(--muted);font-size:.8rem;flex-wrap:wrap;gap:12px}
-.payment-icons{display:flex;gap:8px}
-.pay-icon{background:#1e2832;border-radius:6px;padding:4px 10px;font-size:.75rem;font-weight:600}
+.footer-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:32px;margin-bottom:40px}
+.fb p{color:var(--muted);font-size:.85rem;margin-top:12px;line-height:1.6}
+.fc h5{font-weight:700;margin-bottom:16px;font-size:.9rem}
+.fc ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+.fc a{color:var(--muted);text-decoration:none;font-size:.85rem;transition:.2s}
+.fc a:hover{color:var(--g)}
+.foot-bot{border-top:1px solid var(--border);padding-top:20px;display:flex;justify-content:space-between;align-items:center;color:var(--muted);font-size:.8rem;flex-wrap:wrap;gap:12px}
+.pays{display:flex;gap:8px}
+.pay{background:#1e2832;border-radius:6px;padding:4px 10px;font-size:.75rem;font-weight:600}
 
 /* TOAST */
-.toast{position:fixed;bottom:24px;right:24px;background:var(--card);border:1px solid var(--g);border-radius:12px;padding:14px 20px;display:flex;align-items:center;gap:10px;font-size:.88rem;z-index:999;transform:translateY(100px);opacity:0;transition:.3s}
+.toast{position:fixed;bottom:24px;right:24px;background:var(--card);border:1px solid var(--g);border-radius:14px;padding:14px 20px;display:flex;align-items:center;gap:10px;font-size:.88rem;z-index:999;transform:translateY(120px);opacity:0;transition:.35s;max-width:340px;box-shadow:0 8px 30px rgba(0,212,170,.2)}
 .toast.show{transform:translateY(0);opacity:1}
-
-/* LIVE BADGE */
-.live-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(255,68,85,.1);border:1px solid rgba(255,68,85,.3);color:#ff4455;padding:4px 12px;border-radius:100px;font-size:.72rem;font-weight:700;margin-left:12px}
-.live-dot{width:6px;height:6px;border-radius:50%;background:#ff4455;animation:pulse 1s infinite}
 
 @media(max-width:768px){
   .nav-links{display:none}
   .hero h1{font-size:2.2rem}
-  .cta-banner{padding:36px 24px}
-  .cta-banner h2{font-size:1.4rem}
-  .countdown-wrap{flex-direction:column}
+  .cta-band{padding:36px 24px}
+  .cta-band h2{font-size:1.4rem}
+  .flash-bar{flex-direction:column;align-items:flex-start}
 }
 </style>
 </head>
@@ -253,7 +188,8 @@ footer{background:var(--card);border-top:1px solid var(--border);padding:48px 6%
 
 <!-- TOP BAR -->
 <div class="topbar">
-  🎁 Darmowa dostawa na pierwsze zamówienie — kod: <span>SMART1</span> &nbsp;|&nbsp; Oferta kończy się za: <span id="topTimer">ładowanie...</span>
+  🎁 Darmowa dostawa na pierwsze zamówienie — kod: <span class="topbar-code">SMART1</span>
+  &nbsp;|&nbsp; Oferta kończy się za: <span id="topTimer" style="font-weight:900">–:–:–</span>
 </div>
 
 <!-- NAV -->
@@ -270,263 +206,211 @@ footer{background:var(--card);border-top:1px solid var(--border);padding:48px 6%
   </ul>
   <div class="nav-right">
     <button class="cart-btn" onclick="showCart()">
-      🛒 Koszyk <div class="cart-dot" id="cartCount">0</div>
+      🛒 Koszyk <span class="cart-count" id="cartCount">0</span>
     </button>
-    <a href="#produkty" class="cta-nav">Kup teraz</a>
+    <a href="#produkty" class="cta-nav">Kup teraz →</a>
   </div>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
-  <div>
-    <div class="hero-badge">🟢 Ponad 2400 zadowolonych klientów w Polsce
-      <span class="live-badge"><span class="live-dot"></span><span id="viewers">247</span> osób teraz</span>
-    </div>
+  <div class="badge-live">
+    <span class="live-dot"></span>
+    <span id="onlineCount">247</span> osób przegląda teraz
   </div>
-  <h1>Gadżety które<br><span class="grad">zmieniają codzienność</span></h1>
-  <p>Smart home, zdrowie i produktywność w jednym miejscu. Sprawdzone produkty, dostawa 48h, pełna gwarancja zwrotu.</p>
+  <h1>Gadżety które<br><em>zmieniają codzienność</em></h1>
+  <p class="hero-sub">Smart home, zdrowie i produktywność w jednym miejscu. Sprawdzone produkty, dostawa 48h, pełna gwarancja zwrotu bez pytań.</p>
   <div class="hero-btns">
-    <a href="#produkty" class="btn btn-grad">🛍️ Zobacz bestsellery</a>
-    <a href="#jak" class="btn btn-outline">Jak to działa</a>
+    <a href="#produkty" class="btn btn-grad">🛍️ Przejdź do produktów</a>
+    <a href="#jak" class="btn btn-ghost">Jak to działa?</a>
   </div>
-  <div class="hero-img">
-    <div class="hero-card-mini"><div class="icon">🚚</div><div><strong>Dostawa 48h</strong><span>Kurier pod drzwi</span></div></div>
-    <div class="hero-card-mini"><div class="icon">🔄</div><div><strong>30 dni zwrotu</strong><span>Bez pytań</span></div></div>
-    <div class="hero-card-mini"><div class="icon">🔒</div><div><strong>Bezpieczna płatność</strong><span>SSL / BLIK / Przelew</span></div></div>
-    <div class="hero-card-mini"><div class="icon">⭐</div><div><strong>Ocena 4.9/5</strong><span>2400+ opinii</span></div></div>
+  <div class="trust-row">
+    <div class="trust-pill"><span class="ti">🚚</span> Dostawa 48h</div>
+    <div class="trust-pill"><span class="ti">🔄</span> 30 dni zwrotu</div>
+    <div class="trust-pill"><span class="ti">🔒</span> SSL + BLIK</div>
+    <div class="trust-pill"><span class="ti">⭐</span> Ocena 4.9/5</div>
   </div>
 </section>
 
 <!-- MARQUEE -->
 <div class="marquee-wrap">
   <div class="marquee-track">
-    <div class="marquee-item"><span class="dot"></span> Masażery perkusyjne</div>
-    <div class="marquee-item"><span class="dot"></span> Inteligentne lampki LED</div>
-    <div class="marquee-item"><span class="dot"></span> Korektory postawy</div>
-    <div class="marquee-item"><span class="dot"></span> Ładowarki bezprzewodowe</div>
-    <div class="marquee-item"><span class="dot"></span> Smart organizery</div>
-    <div class="marquee-item"><span class="dot"></span> Butelki UV</div>
-    <div class="marquee-item"><span class="dot"></span> Gadżety fitness</div>
-    <div class="marquee-item"><span class="dot"></span> Akcesoria smart home</div>
-    <div class="marquee-item"><span class="dot"></span> Masażery perkusyjne</div>
-    <div class="marquee-item"><span class="dot"></span> Inteligentne lampki LED</div>
-    <div class="marquee-item"><span class="dot"></span> Korektory postawy</div>
-    <div class="marquee-item"><span class="dot"></span> Ładowarki bezprzewodowe</div>
-    <div class="marquee-item"><span class="dot"></span> Smart organizery</div>
-    <div class="marquee-item"><span class="dot"></span> Butelki UV</div>
-    <div class="marquee-item"><span class="dot"></span> Gadżety fitness</div>
-    <div class="marquee-item"><span class="dot"></span> Akcesoria smart home</div>
+    <div class="mitem"><span class="dot"></span>Masażery perkusyjne</div>
+    <div class="mitem"><span class="dot"></span>Lampki LED Smart</div>
+    <div class="mitem"><span class="dot"></span>Korektory postawy</div>
+    <div class="mitem"><span class="dot"></span>Ładowarki 3w1</div>
+    <div class="mitem"><span class="dot"></span>Smart organizery</div>
+    <div class="mitem"><span class="dot"></span>Butelki UV Pro</div>
+    <div class="mitem"><span class="dot"></span>Zegarki fitness</div>
+    <div class="mitem"><span class="dot"></span>Głośniki Bluetooth</div>
+    <div class="mitem"><span class="dot"></span>Masażery perkusyjne</div>
+    <div class="mitem"><span class="dot"></span>Lampki LED Smart</div>
+    <div class="mitem"><span class="dot"></span>Korektory postawy</div>
+    <div class="mitem"><span class="dot"></span>Ładowarki 3w1</div>
+    <div class="mitem"><span class="dot"></span>Smart organizery</div>
+    <div class="mitem"><span class="dot"></span>Butelki UV Pro</div>
+    <div class="mitem"><span class="dot"></span>Zegarki fitness</div>
+    <div class="mitem"><span class="dot"></span>Głośniki Bluetooth</div>
   </div>
 </div>
 
 <!-- STATS -->
-<div style="padding:60px 6%">
-  <div class="stats-section">
-    <div class="stat-box"><div class="num">2 400+</div><div class="lbl">Zadowolonych klientów</div></div>
-    <div class="stat-box"><div class="num">48h</div><div class="lbl">Średnia dostawa</div></div>
-    <div class="stat-box"><div class="num">30 dni</div><div class="lbl">Gwarancja zwrotu</div></div>
-    <div class="stat-box"><div class="num">4.9 ★</div><div class="lbl">Średnia ocena</div></div>
-    <div class="stat-box"><div class="num">99%</div><div class="lbl">Pozytywnych opinii</div></div>
+<div style="padding:48px 0">
+  <div class="stats-bar">
+    <div class="stat"><div class="stat-n">2 400+</div><div class="stat-l">Zadowolonych klientów</div></div>
+    <div class="stat"><div class="stat-n">48h</div><div class="stat-l">Średnia dostawa</div></div>
+    <div class="stat"><div class="stat-n">30 dni</div><div class="stat-l">Gwarancja zwrotu</div></div>
+    <div class="stat"><div class="stat-n">4.9★</div><div class="stat-l">Średnia ocena</div></div>
+    <div class="stat"><div class="stat-n">99%</div><div class="stat-l">Pozytywnych opinii</div></div>
   </div>
 </div>
 
 <!-- PRODUKTY -->
 <div class="section" id="produkty">
-  <div class="section-tag">🔥 Bestsellery 2026</div>
+  <div class="stag">🔥 Bestsellery 2026</div>
   <h2>Nasze topowe produkty</h2>
-  <p class="sub">Wybrane ręcznie — tylko to co faktycznie działa i sprzedaje się najlepiej</p>
+  <p class="sub">Wybieramy tylko to co faktycznie działa — zero chińskiego szmelcu, same hity sprzedaży</p>
 
-  <!-- COUNTDOWN -->
-  <div class="countdown-wrap">
-    <div class="countdown-label">
-      ⚡ <strong>Flash Sale — tylko dziś!</strong><br>
-      <span>Zniżki -40% wygasają za:</span>
-    </div>
-    <div class="countdown-timer">
-      <div class="cd-unit"><span class="cd-num" id="cdH">00</span><span class="cd-lbl">godz</span></div>
-      <div class="cd-unit"><span class="cd-num" id="cdM">00</span><span class="cd-lbl">min</span></div>
-      <div class="cd-unit"><span class="cd-num" id="cdS">00</span><span class="cd-lbl">sek</span></div>
+  <div class="flash-bar">
+    <div class="flash-label"><strong>⚡ Flash Sale — tylko dziś!</strong><br>Zniżki do -50% wygasają za:</div>
+    <div class="cd">
+      <div class="cd-box"><span class="cd-n" id="cdH">00</span><div class="cd-l">godz</div></div>
+      <div class="cd-box"><span class="cd-n" id="cdM">00</span><div class="cd-l">min</div></div>
+      <div class="cd-box"><span class="cd-n" id="cdS">00</span><div class="cd-l">sek</div></div>
     </div>
   </div>
 
   <div class="cats">
-    <div class="cat active" onclick="filterCat(this,'all')">Wszystkie</div>
+    <div class="cat active" onclick="filterCat(this,'all')">✦ Wszystkie</div>
     <div class="cat" onclick="filterCat(this,'zdrowie')">💆 Zdrowie</div>
     <div class="cat" onclick="filterCat(this,'smart')">💡 Smart Home</div>
     <div class="cat" onclick="filterCat(this,'produktywnosc')">⚡ Produktywność</div>
   </div>
 
-  <div class="products">
+  <div class="grid">
 
-    <!-- MASAŻER -->
     <div class="card" data-cat="zdrowie">
-      <div class="card-badge badge-hit">🔥 HIT</div>
-      <div class="card-media" style="background:linear-gradient(135deg,#051520,#0a2535)">
-        <div class="prod-bg-glow" style="background:radial-gradient(circle,#00d4aa,transparent)"></div>
-        <div class="prod-img-wrap">
-          <div class="massager-img">
-            <div class="massager-head"></div>
-            <div class="massager-body">
-              <div class="massager-btn"></div>
-            </div>
-            <div class="massager-grip"></div>
-          </div>
-        </div>
+      <div class="card-badge b-hot">🔥 HIT</div>
+      <div class="card-img">
+        <img src="https://images.unsplash.com/photo-1600717535275-0b18ede2f7fc?w=400&h=220&fit=crop&auto=format" alt="Masażer Perkusyjny" loading="lazy">
+        <div class="img-overlay"></div>
       </div>
       <div class="card-body">
-        <div class="stars-row"><span>★★★★★</span><small>(312 opinii)</small></div>
+        <div class="stars">★★★★★ <small>(312 opinii)</small></div>
         <h3>Masażer Perkusyjny Pro X6</h3>
-        <p class="desc">6 końcówek, 20 poziomów. Likwiduje ból mięśni w 5 minut. Cichy silnik 40dB.</p>
-        <div class="stock-bar"><div class="stock-label"><span>⚡ Zostało tylko 7 szt.</span><span>87% sprzedane</span></div><div class="bar"><div class="bar-fill" style="width:87%"></div></div></div>
-        <div class="card-footer" style="margin-top:14px">
-          <div class="prices"><div class="price-now">149 zł</div><div class="price-was">299 zł (-50%)</div></div>
-          <button class="add-cart" onclick="addToCart('Masażer Perkusyjny Pro X6',149,this)">+</button>
+        <p class="desc">6 końcówek, 20 poziomów intensywności. Likwiduje ból mięśni w 5 min. Cichy silnik 40dB, 6h bateria.</p>
+        <div class="stock-row">
+          <div class="stock-top"><span>⚡ Zostało 7 szt.</span><span>87% sprzedane</span></div>
+          <div class="bar"><div class="bar-f" style="width:87%"></div></div>
+        </div>
+        <div class="card-foot">
+          <div><div class="price-now">149 zł</div><div class="price-was">299 zł (-50%)</div></div>
+          <button class="add-btn" onclick="addCart('Masażer Perkusyjny Pro X6',149,this)">+</button>
         </div>
       </div>
     </div>
 
-    <!-- LAMPKA -->
     <div class="card" data-cat="smart">
-      <div class="card-badge badge-new">✨ NOWE</div>
-      <div class="card-media" style="background:linear-gradient(135deg,#051520,#0a2030)">
-        <div class="prod-bg-glow" style="background:radial-gradient(circle,#00d4ff,transparent)"></div>
-        <div class="prod-img-wrap">
-          <div class="lamp-img">
-            <div class="lamp-glow"></div>
-            <div class="lamp-shade"></div>
-            <div class="lamp-stem"></div>
-            <div class="lamp-base"></div>
-          </div>
-        </div>
+      <div class="card-badge b-new">✨ NOWE</div>
+      <div class="card-img">
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=220&fit=crop&auto=format" alt="Lampka LED RGB" loading="lazy">
+        <div class="img-overlay"></div>
       </div>
       <div class="card-body">
-        <div class="stars-row"><span>★★★★★</span><small>(198 opinii)</small></div>
+        <div class="stars">★★★★★ <small>(198 opinii)</small></div>
         <h3>Lampka LED RGB Smart WiFi</h3>
-        <p class="desc">16 mln kolorów, Alexa i Google Home. Sterowanie głosem i aplikacją mobilną.</p>
-        <div class="stock-bar"><div class="stock-label"><span>⚡ Zostało 15 szt.</span><span>73% sprzedane</span></div><div class="bar"><div class="bar-fill" style="width:73%"></div></div></div>
-        <div class="card-footer" style="margin-top:14px">
-          <div class="prices"><div class="price-now">89 zł</div><div class="price-was">149 zł (-40%)</div></div>
-          <button class="add-cart" onclick="addToCart('Lampka LED RGB Smart WiFi',89,this)">+</button>
+        <p class="desc">16 mln kolorów, kompatybilna z Alexa i Google Home. Sterowanie głosem i aplikacją mobilną 24/7.</p>
+        <div class="stock-row">
+          <div class="stock-top"><span>⚡ Zostało 15 szt.</span><span>73% sprzedane</span></div>
+          <div class="bar"><div class="bar-f" style="width:73%"></div></div>
+        </div>
+        <div class="card-foot">
+          <div><div class="price-now">89 zł</div><div class="price-was">149 zł (-40%)</div></div>
+          <button class="add-btn" onclick="addCart('Lampka LED RGB Smart WiFi',89,this)">+</button>
         </div>
       </div>
     </div>
 
-    <!-- KOREKTOR -->
     <div class="card" data-cat="zdrowie">
-      <div class="card-badge badge-sale">-40%</div>
-      <div class="card-media" style="background:linear-gradient(135deg,#051520,#0a2535)">
-        <div class="prod-bg-glow" style="background:radial-gradient(circle,#7b2fff,transparent)"></div>
-        <div class="prod-img-wrap">
-          <div class="posture-img">
-            <div class="posture-strap"></div>
-            <div class="posture-body">
-              <div class="posture-screen">
-                <div class="posture-dot"></div>
-                <div class="posture-line" style="width:28px"></div>
-                <div class="posture-line" style="width:20px;opacity:.6"></div>
-              </div>
-            </div>
-          </div>
-        </div>
+      <div class="card-badge b-sale">-40%</div>
+      <div class="card-img">
+        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=220&fit=crop&auto=format" alt="Korektor Postawy" loading="lazy">
+        <div class="img-overlay"></div>
       </div>
       <div class="card-body">
-        <div class="stars-row"><span>★★★★☆</span><small>(256 opinii)</small></div>
+        <div class="stars">★★★★☆ <small>(256 opinii)</small></div>
         <h3>Korektor Postawy Smart Vibe</h3>
-        <p class="desc">Wibruje gdy się garbiś. Bluetooth 5.0, aplikacja, tryb sport i biuro.</p>
-        <div class="stock-bar"><div class="stock-label"><span>⚡ Zostało 11 szt.</span><span>80% sprzedane</span></div><div class="bar"><div class="bar-fill" style="width:80%"></div></div></div>
-        <div class="card-footer" style="margin-top:14px">
-          <div class="prices"><div class="price-now">119 zł</div><div class="price-was">199 zł (-40%)</div></div>
-          <button class="add-cart" onclick="addToCart('Korektor Postawy Smart Vibe',119,this)">+</button>
+        <p class="desc">Wibruje gdy się garbiś. Bluetooth 5.0, dedykowana aplikacja, tryb sport i biuro.</p>
+        <div class="stock-row">
+          <div class="stock-top"><span>⚡ Zostało 11 szt.</span><span>80% sprzedane</span></div>
+          <div class="bar"><div class="bar-f" style="width:80%"></div></div>
+        </div>
+        <div class="card-foot">
+          <div><div class="price-now">119 zł</div><div class="price-was">199 zł (-40%)</div></div>
+          <button class="add-btn" onclick="addCart('Korektor Postawy Smart Vibe',119,this)">+</button>
         </div>
       </div>
     </div>
 
-    <!-- ŁADOWARKA -->
     <div class="card" data-cat="produktywnosc">
-      <div class="card-badge badge-new">✨ NOWE</div>
-      <div class="card-media" style="background:linear-gradient(135deg,#051a10,#0a2520)">
-        <div class="prod-bg-glow" style="background:radial-gradient(circle,#00ff88,transparent)"></div>
-        <div class="prod-img-wrap">
-          <div class="charger-img">
-            <div class="charger-pad">
-              <div class="charger-slot phone">📱</div>
-              <div class="charger-slot watch">⌚</div>
-              <div class="charger-slot buds">🎧</div>
-            </div>
-            <div class="charger-lightning">⚡</div>
-          </div>
-        </div>
+      <div class="card-badge b-new">✨ NOWE</div>
+      <div class="card-img">
+        <img src="https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=400&h=220&fit=crop&auto=format" alt="Ładowarka 3w1" loading="lazy">
+        <div class="img-overlay"></div>
       </div>
       <div class="card-body">
-        <div class="stars-row"><span>★★★★★</span><small>(144 opinii)</small></div>
+        <div class="stars">★★★★★ <small>(144 opinii)</small></div>
         <h3>Ładowarka Bezprzewodowa 3w1</h3>
-        <p class="desc">Ładuje telefon + słuchawki + zegarek. 15W szybkie ładowanie. Slim design.</p>
-        <div class="stock-bar"><div class="stock-label"><span>⚡ Zostało 9 szt.</span><span>91% sprzedane</span></div><div class="bar"><div class="bar-fill" style="width:91%"></div></div></div>
-        <div class="card-footer" style="margin-top:14px">
-          <div class="prices"><div class="price-now">129 zł</div><div class="price-was">219 zł (-41%)</div></div>
-          <button class="add-cart" onclick="addToCart('Ładowarka Bezprzewodowa 3w1',129,this)">+</button>
+        <p class="desc">Ładuje telefon + słuchawki + zegarek jednocześnie. 15W szybkie ładowanie. Ultracienki design.</p>
+        <div class="stock-row">
+          <div class="stock-top"><span>⚡ Zostało 9 szt.</span><span>91% sprzedane</span></div>
+          <div class="bar"><div class="bar-f" style="width:91%"></div></div>
+        </div>
+        <div class="card-foot">
+          <div><div class="price-now">129 zł</div><div class="price-was">219 zł (-41%)</div></div>
+          <button class="add-btn" onclick="addCart('Ładowarka Bezprzewodowa 3w1',129,this)">+</button>
         </div>
       </div>
     </div>
 
-    <!-- BUTELKA -->
     <div class="card" data-cat="zdrowie">
-      <div class="card-badge badge-hit">💧 EKO</div>
-      <div class="card-media" style="background:linear-gradient(135deg,#051520,#051a25)">
-        <div class="prod-bg-glow" style="background:radial-gradient(circle,#00aaff,transparent)"></div>
-        <div class="prod-img-wrap">
-          <div class="bottle-img">
-            <div class="bottle-cap"></div>
-            <div class="bottle-neck"></div>
-            <div class="bottle-body">
-              <div class="bottle-water"></div>
-              <div class="bottle-uv"></div>
-            </div>
-          </div>
-        </div>
+      <div class="card-badge" style="background:#00a8ff;color:#000">💧 EKO</div>
+      <div class="card-img">
+        <img src="https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=400&h=220&fit=crop&auto=format" alt="Butelka UV Pro" loading="lazy">
+        <div class="img-overlay"></div>
       </div>
       <div class="card-body">
-        <div class="stars-row"><span>★★★★★</span><small>(89 opinii)</small></div>
+        <div class="stars">★★★★★ <small>(89 opinii)</small></div>
         <h3>Butelka z filtrem UV Pro</h3>
-        <p class="desc">Czyści wodę UV w 60s. 500ml, ładowanie USB-C, stal nierdzewna 316L.</p>
-        <div class="stock-bar"><div class="stock-label"><span>⚡ Zostało 18 szt.</span><span>65% sprzedane</span></div><div class="bar"><div class="bar-fill" style="width:65%"></div></div></div>
-        <div class="card-footer" style="margin-top:14px">
-          <div class="prices"><div class="price-now">99 zł</div><div class="price-was">169 zł (-41%)</div></div>
-          <button class="add-cart" onclick="addToCart('Butelka z filtrem UV Pro',99,this)">+</button>
+        <p class="desc">Sterylizuje wodę promieniami UV w 60 sekund. 500ml, ładowanie USB-C, stal nierdzewna 316L.</p>
+        <div class="stock-row">
+          <div class="stock-top"><span>Zostało 18 szt.</span><span>65% sprzedane</span></div>
+          <div class="bar"><div class="bar-f" style="width:65%"></div></div>
+        </div>
+        <div class="card-foot">
+          <div><div class="price-now">99 zł</div><div class="price-was">169 zł (-41%)</div></div>
+          <button class="add-btn" onclick="addCart('Butelka z filtrem UV Pro',99,this)">+</button>
         </div>
       </div>
     </div>
 
-    <!-- ORGANIZER -->
     <div class="card" data-cat="produktywnosc">
-      <div class="card-badge badge-sale">-39%</div>
-      <div class="card-media" style="background:linear-gradient(135deg,#0f1520,#151d28)">
-        <div class="prod-bg-glow" style="background:radial-gradient(circle,#ffd700,transparent)"></div>
-        <div class="prod-img-wrap">
-          <div class="organizer-img">
-            <div class="org-slot slot-wide">
-              <div class="org-item" style="background:#00d4aa;height:8px"></div>
-              <div class="org-item" style="background:#00a8ff;height:8px"></div>
-              <div class="org-item" style="background:#7b2fff;height:6px"></div>
-            </div>
-            <div class="org-slot slot-mid">
-              <div class="org-item" style="background:#ffd700;height:7px"></div>
-              <div class="org-item" style="background:#ff4455;height:6px"></div>
-            </div>
-            <div class="org-slot slot-small">
-              <div class="org-item" style="background:#00d4aa;height:5px"></div>
-            </div>
-          </div>
-        </div>
+      <div class="card-badge b-sale">-39%</div>
+      <div class="card-img">
+        <img src="https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?w=400&h=220&fit=crop&auto=format" alt="Organizer Biurka" loading="lazy">
+        <div class="img-overlay"></div>
       </div>
       <div class="card-body">
-        <div class="stars-row"><span>★★★★☆</span><small>(76 opinii)</small></div>
+        <div class="stars">★★★★☆ <small>(76 opinii)</small></div>
         <h3>Organizer Biurka Magnetic Pro</h3>
-        <p class="desc">Modułowy, aluminium + silikon. Kable, telefon, długopisy. Zero chaosu na biurku.</p>
-        <div class="stock-bar"><div class="stock-label"><span>⚡ Zostało 22 szt.</span><span>59% sprzedane</span></div><div class="bar"><div class="bar-fill" style="width:59%"></div></div></div>
-        <div class="card-footer" style="margin-top:14px">
-          <div class="prices"><div class="price-now">79 zł</div><div class="price-was">129 zł (-39%)</div></div>
-          <button class="add-cart" onclick="addToCart('Organizer Biurka Magnetic Pro',79,this)">+</button>
+        <p class="desc">Modułowy system z aluminium i silikonu. Na kable, telefon, długopisy. Zero chaosu na biurku.</p>
+        <div class="stock-row">
+          <div class="stock-top"><span>Zostało 22 szt.</span><span>59% sprzedane</span></div>
+          <div class="bar"><div class="bar-f" style="width:59%"></div></div>
+        </div>
+        <div class="card-foot">
+          <div><div class="price-now">79 zł</div><div class="price-was">129 zł (-39%)</div></div>
+          <button class="add-btn" onclick="addCart('Organizer Biurka Magnetic Pro',79,this)">+</button>
         </div>
       </div>
     </div>
@@ -537,187 +421,165 @@ footer{background:var(--card);border-top:1px solid var(--border);padding:48px 6%
 <!-- JAK TO DZIAŁA -->
 <div style="background:rgba(14,19,24,.6);padding:1px 0">
 <div class="section" id="jak">
-  <div class="section-tag">✅ Prosty proces</div>
+  <div class="stag">✅ Prosty proces</div>
   <h2>Jak to działa?</h2>
-  <p class="sub">4 kroki do nowego gadżetu w twoich rękach</p>
+  <p class="sub">4 kroki dzielą Cię od nowego gadżetu</p>
   <div class="steps">
-    <div class="step"><div class="step-num">1</div><h4>Wybierz produkt</h4><p>Przeglądaj bestsellery, czytaj opinie, porównaj ceny</p></div>
-    <div class="step"><div class="step-num">2</div><h4>Dodaj do koszyka</h4><p>Kliknij przycisk, wybierz ilość, sprawdź zamówienie</p></div>
-    <div class="step"><div class="step-num">3</div><h4>Zapłać bezpiecznie</h4><p>BLIK, karta, przelew lub płatność za pobraniem</p></div>
-    <div class="step"><div class="step-num">4</div><h4>Odbierz w 48h</h4><p>Kurier pod drzwi, śledzenie paczki w aplikacji</p></div>
+    <div class="step"><div class="step-n">1</div><h4>Wybierz produkt</h4><p>Przeglądaj bestsellery, czytaj opinie, porównaj specyfikacje</p></div>
+    <div class="step"><div class="step-n">2</div><h4>Dodaj do koszyka</h4><p>Kliknij +, wybierz ilość, skontroluj zamówienie</p></div>
+    <div class="step"><div class="step-n">3</div><h4>Zapłać bezpiecznie</h4><p>BLIK, karta Visa/MC, przelew lub płatność przy odbiorze</p></div>
+    <div class="step"><div class="step-n">4</div><h4>Odbierz w 48h</h4><p>Kurier InPost lub DPD, śledzenie paczki na maila i SMS</p></div>
   </div>
 </div>
 </div>
 
-<!-- CECHY -->
+<!-- GWARANCJE -->
 <div class="section">
-  <div class="section-tag">💎 Dlaczego my</div>
-  <h2>SmartNest gwarancje</h2>
-  <p class="sub">Zasady które odróżniają nas od reszty</p>
-  <div class="features-grid">
-    <div class="feat-card"><div class="feat-icon">🚚</div><h4>Dostawa Express 48h</h4><p>Wysyłamy każde zamówienie w 24h. Kurier z numerem śledzenia na maila i SMS.</p></div>
-    <div class="feat-card"><div class="feat-icon">🔄</div><h4>30 dni zwrotu</h4><p>Bez pytań, bez tłumaczeń. Zwracasz, my oddajemy pełną kwotę w ciągu 3 dni roboczych.</p></div>
-    <div class="feat-card"><div class="feat-icon">🧪</div><h4>Przetestowane produkty</h4><p>Każdy produkt przechodzi naszą weryfikację jakości zanim trafi do sklepu. Zero chińskiego szmelcu.</p></div>
-    <div class="feat-card"><div class="feat-icon">🔒</div><h4>Bezpieczne płatności</h4><p>SSL 256-bit, BLIK, karty Visa/Mastercard, przelew, PayPal. Twoje dane zawsze bezpieczne.</p></div>
-    <div class="feat-card"><div class="feat-icon">💬</div><h4>Support 7 dni w tygodniu</h4><p>Odpowiadamy na pytania 7/7. Zawsze żywy człowiek, nie bot.</p></div>
-    <div class="feat-card"><div class="feat-icon">📦</div><h4>Darmowa dostawa od 199 zł</h4><p>Zamów za 199 zł lub więcej i płacisz 0 zł za dostawę. Kurier DPD lub InPost.</p></div>
+  <div class="stag">💎 Dlaczego SmartNest</div>
+  <h2>Gwarancje które robimy realnymi</h2>
+  <p class="sub">Zasady które odróżniają nas od zwykłych sklepów online</p>
+  <div class="feat-grid">
+    <div class="feat"><div class="feat-ico">🚚</div><h4>Dostawa Express 48h</h4><p>Każde zamówienie wysyłamy w 24h. Kurier z numerem śledzenia na email i SMS od razu.</p></div>
+    <div class="feat"><div class="feat-ico">🔄</div><h4>30 dni zwrotu</h4><p>Bez pytań, bez tłumaczeń. Zwracasz, my oddajemy pełną kwotę w ciągu 3 dni roboczych.</p></div>
+    <div class="feat"><div class="feat-ico">🧪</div><h4>Każdy produkt testowany</h4><p>Weryfikujemy jakość zanim produkt trafi do sklepu. Zero szmelcu, same sprawdzone hity.</p></div>
+    <div class="feat"><div class="feat-ico">🔒</div><h4>Bezpieczna płatność</h4><p>SSL 256-bit, BLIK, Visa/Mastercard, PayPal. Dane zawsze bezpieczne, nigdy nie są przechowywane.</p></div>
+    <div class="feat"><div class="feat-ico">💬</div><h4>Wsparcie 7/7</h4><p>Odpowiadamy codziennie. Zawsze żywa osoba, nie automat. Rozwiążemy każdy problem.</p></div>
+    <div class="feat"><div class="feat-ico">📦</div><h4>Darmowa dostawa od 199 zł</h4><p>Zamów za 199 zł lub więcej — płacisz 0 zł za dostawę kurierem DPD lub InPost Paczkomat.</p></div>
   </div>
 </div>
 
 <!-- OPINIE -->
 <div style="background:rgba(14,19,24,.6);padding:1px 0">
 <div class="section" id="opinie">
-  <div class="section-tag">⭐ Opinie klientów</div>
-  <h2>Co mówią klienci</h2>
-  <p class="sub">Prawdziwe opinie bez filtrów — każda zweryfikowana</p>
-  <div class="reviews-grid">
-    <div class="review-card">
-      <div class="review-top"><div class="avatar">MK</div><div><div class="rev-name">Marcin Kowalski</div><div class="rev-date">2 tygodnie temu · Warszawa</div></div></div>
+  <div class="stag">⭐ Opinie klientów</div>
+  <h2>Co mówią o nas klienci</h2>
+  <p class="sub">Zweryfikowane zakupy, prawdziwe opinie — bez filtrowania</p>
+  <div class="rev-grid">
+    <div class="rev">
+      <div class="rev-top"><div class="ava">MK</div><div><div class="rev-name">Marcin Kowalski</div><div class="rev-loc">2 tygodnie temu · Warszawa</div></div></div>
       <div class="rev-stars">★★★★★</div>
-      <p class="rev-text">"Masażer perkusyjny to najlepsza inwestycja tego roku. Bóle pleców po 8h przy biurku — znikły po tygodniu używania. Polecam każdemu kto siedzi przy komputerze."</p>
-      <div class="verified">✅ Zweryfikowany zakup</div>
+      <p class="rev-txt">"Masażer perkusyjny to najlepsza inwestycja roku. Bóle pleców po 8h przy biurku znikły po tygodniu. Polecam każdemu kto pracuje przy komputerze."</p>
+      <div class="rev-ok">✅ Zweryfikowany zakup</div>
     </div>
-    <div class="review-card">
-      <div class="review-top"><div class="avatar" style="background:linear-gradient(135deg,#00a8ff,#0080ff)">TW</div><div><div class="rev-name">Tomasz Wiśniewski</div><div class="rev-date">1 tydzień temu · Kraków</div></div></div>
+    <div class="rev">
+      <div class="rev-top"><div class="ava" style="background:linear-gradient(135deg,#00a8ff,#0080ff)">TW</div><div><div class="rev-name">Tomasz Wiśniewski</div><div class="rev-loc">1 tydzień temu · Kraków</div></div></div>
       <div class="rev-stars">★★★★★</div>
-      <p class="rev-text">"Lampki LED w całym mieszkaniu — żona zachwycona, ja zachwycony. Dostawa dosłownie następnego dnia. Cena nie do pobicia, jakość premium."</p>
-      <div class="verified">✅ Zweryfikowany zakup</div>
+      <p class="rev-txt">"Lampki LED w całym mieszkaniu — żona zachwycona, ja też. Dostawa następnego dnia! Cena nie do pobicia, jakość premium. Na pewno wrócę po więcej."</p>
+      <div class="rev-ok">✅ Zweryfikowany zakup</div>
     </div>
-    <div class="review-card">
-      <div class="review-top"><div class="avatar" style="background:linear-gradient(135deg,#ff6b6b,#ff4455)">AM</div><div><div class="rev-name">Anna Malinowska</div><div class="rev-date">3 dni temu · Wrocław</div></div></div>
+    <div class="rev">
+      <div class="rev-top"><div class="ava" style="background:linear-gradient(135deg,#ff6b6b,#ff4455)">AM</div><div><div class="rev-name">Anna Malinowska</div><div class="rev-loc">3 dni temu · Wrocław</div></div></div>
       <div class="rev-stars">★★★★★</div>
-      <p class="rev-text">"Korektor postawy działa! Po 2 tygodniach siedzę prosto bez zastanawiania się. Mąż też zamówił swój. Obsługa klienta błyskawiczna."</p>
-      <div class="verified">✅ Zweryfikowany zakup</div>
+      <p class="rev-txt">"Korektor postawy działa! Po 2 tygodniach siedzę prosto bez myślenia o tym. Mąż też zamówił swój. Obsługa klienta odpowiedziała w 10 minut."</p>
+      <div class="rev-ok">✅ Zweryfikowany zakup</div>
     </div>
   </div>
 </div>
 </div>
 
-<!-- CTA BANNER -->
-<div style="padding:40px 0">
-  <div class="cta-banner">
-    <div><h2>🎁 Darmowa dostawa na pierwsze zamówienie!</h2><p>Użyj kodu <strong>SMART1</strong> przy kasie. Ważny do końca miesiąca.</p></div>
+<!-- CTA BAND -->
+<div style="padding:48px 0">
+  <div class="cta-band">
+    <div>
+      <h2>🎁 Darmowa dostawa na pierwsze zamówienie!</h2>
+      <p>Wpisz kod <strong>SMART1</strong> przy kasie. Ważny do końca miesiąca. Nie łączy się z innymi promocjami.</p>
+    </div>
     <a href="#produkty" class="btn-dark">Skorzystaj teraz →</a>
   </div>
 </div>
 
 <!-- NEWSLETTER -->
 <div class="newsletter" id="kontakt">
-  <div class="section-tag" style="text-align:center">📧 Newsletter</div>
+  <div class="stag" style="text-align:center">📧 Newsletter</div>
   <h2>Bądź pierwszy z nowościami</h2>
-  <p>Dostajesz -10% na pierwsze zamówienie + powiadomienia o nowych produktach i promocjach</p>
-  <div class="email-form">
-    <input type="email" placeholder="Twój adres email..." id="emailInput">
-    <button onclick="subscribeEmail()">Zapisz mnie 🚀</button>
+  <p>-10% na pierwsze zamówienie + powiadomienia o nowych produktach i przecenach tylko dla subskrybentów</p>
+  <div class="nl-form">
+    <input type="email" placeholder="Twój adres email..." id="nlEmail">
+    <button onclick="subscribe()">Zapisz się 🚀</button>
   </div>
 </div>
 
 <!-- FOOTER -->
 <footer>
   <div class="footer-grid">
-    <div class="footer-brand">
-      <div class="logo" style="text-decoration:none">
-        <div class="logo-icon" style="display:inline-flex;margin-right:8px">🏠</div>
-        <span style="font-size:1.1rem;font-weight:800">Smart<span style="background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent">Nest</span></span>
+    <div class="fb">
+      <div class="logo" style="display:inline-flex">
+        <div class="logo-icon">🏠</div>
+        <div class="logo-text" style="margin-left:8px">Smart<span>Nest</span></div>
       </div>
-      <p>Gadżety smart home i zdrowotne które naprawdę zmieniają codzienność. Polska firma, polskie wsparcie.</p>
+      <p>Gadżety smart home i zdrowotne które naprawdę zmieniają codzienność. Polska firma, polskie wsparcie, szybka dostawa.</p>
     </div>
-    <div class="footer-col">
-      <h5>Sklep</h5>
-      <ul>
-        <li><a href="#produkty">Bestsellery</a></li>
-        <li><a href="#">Nowości</a></li>
-        <li><a href="#">Promocje</a></li>
-        <li><a href="#">Smart Home</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h5>Pomoc</h5>
-      <ul>
-        <li><a href="#">Jak zamówić</a></li>
-        <li><a href="#">Zwroty i reklamacje</a></li>
-        <li><a href="#">Śledzenie paczki</a></li>
-        <li><a href="#">FAQ</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h5>Kontakt</h5>
-      <ul>
-        <li><a href="#">📧 kontakt@smartnest.pl</a></li>
-        <li><a href="#">📞 +48 000 000 000</a></li>
-        <li><a href="#">💬 Chat na stronie</a></li>
-        <li><a href="#">📍 Polska</a></li>
-      </ul>
-    </div>
+    <div class="fc"><h5>Sklep</h5><ul>
+      <li><a href="#produkty">Bestsellery</a></li>
+      <li><a href="#">Nowości</a></li>
+      <li><a href="#">Promocje</a></li>
+      <li><a href="#">Smart Home</a></li>
+    </ul></div>
+    <div class="fc"><h5>Pomoc</h5><ul>
+      <li><a href="#">Jak zamówić</a></li>
+      <li><a href="#">Zwroty</a></li>
+      <li><a href="#">Śledzenie paczki</a></li>
+      <li><a href="#">FAQ</a></li>
+    </ul></div>
+    <div class="fc"><h5>Kontakt</h5><ul>
+      <li><a href="#">📧 kontakt@smartnest.pl</a></li>
+      <li><a href="#">📞 +48 000 000 000</a></li>
+      <li><a href="#">💬 Chat na żywo</a></li>
+      <li><a href="#">📍 Polska</a></li>
+    </ul></div>
   </div>
-  <div class="footer-bottom">
+  <div class="foot-bot">
     <span>© 2026 SmartNest. Wszystkie prawa zastrzeżone.</span>
-    <div class="payment-icons">
-      <div class="pay-icon">BLIK</div>
-      <div class="pay-icon">Visa</div>
-      <div class="pay-icon">MC</div>
-      <div class="pay-icon">PayPal</div>
+    <div class="pays">
+      <span class="pay">BLIK</span>
+      <span class="pay">Visa</span>
+      <span class="pay">MC</span>
+      <span class="pay">PayPal</span>
     </div>
   </div>
 </footer>
 
-<!-- TOAST -->
-<div class="toast" id="toast">🛒 Dodano do koszyka!</div>
+<div class="toast" id="toast"></div>
 
 <script>
 let cart = [];
 
-// COUNTDOWN — odlicza do końca dnia
-function updateCountdown() {
-  const now = new Date();
-  const end = new Date(now);
+// COUNTDOWN do końca dnia
+function tick() {
+  const now = new Date(), end = new Date(now);
   end.setHours(23, 59, 59, 0);
-  const diff = end - now;
-  const h = Math.floor(diff / 3600000);
-  const m = Math.floor((diff % 3600000) / 60000);
-  const s = Math.floor((diff % 60000) / 1000);
-  const pad = n => String(n).padStart(2,'0');
-  document.getElementById('cdH').textContent = pad(h);
-  document.getElementById('cdM').textContent = pad(m);
-  document.getElementById('cdS').textContent = pad(s);
-  document.getElementById('topTimer').textContent = `${pad(h)}:${pad(m)}:${pad(s)}`;
+  const d = end - now;
+  const p = n => String(n).padStart(2,'0');
+  const h = p(Math.floor(d/3600000));
+  const m = p(Math.floor(d%3600000/60000));
+  const s = p(Math.floor(d%60000/1000));
+  document.getElementById('cdH').textContent = h;
+  document.getElementById('cdM').textContent = m;
+  document.getElementById('cdS').textContent = s;
+  document.getElementById('topTimer').textContent = `${h}:${m}:${s}`;
 }
-setInterval(updateCountdown, 1000);
-updateCountdown();
+setInterval(tick, 1000); tick();
 
-// LIVE VIEWERS — symulacja
-function updateViewers() {
-  const base = 247;
-  const v = base + Math.floor(Math.random() * 30 - 15);
-  document.getElementById('viewers').textContent = Math.max(180, v);
-}
-setInterval(updateViewers, 7000);
+// LIVE VIEWERS
+setInterval(() => {
+  document.getElementById('onlineCount').textContent = 220 + Math.floor(Math.random()*60);
+}, 8000);
 
 // KOSZYK
-function addToCart(name, price, btn) {
+function addCart(name, price, btn) {
   event.stopPropagation();
   cart.push({name, price});
   document.getElementById('cartCount').textContent = cart.length;
   const orig = btn.textContent;
-  btn.textContent = '✓';
-  btn.style.background = '#00d4aa';
-  btn.style.color = '#000';
-  setTimeout(() => { btn.textContent = orig; btn.style.background = ''; btn.style.color = ''; }, 1500);
-  showToast(`${name} dodany do koszyka!`);
-}
-
-function showToast(msg) {
-  const t = document.getElementById('toast');
-  t.textContent = '🛒 ' + msg;
-  t.classList.add('show');
-  setTimeout(() => t.classList.remove('show'), 2500);
+  btn.textContent = '✓'; btn.style.background = '#00d4aa';
+  setTimeout(() => { btn.textContent = orig; btn.style.background = ''; }, 1600);
+  toast(`${name} dodany do koszyka!`);
 }
 
 function showCart() {
-  if (!cart.length) { showToast('Koszyk jest pusty!'); return; }
-  const total = cart.reduce((s, i) => s + i.price, 0);
-  const items = cart.map(i => `• ${i.name} — ${i.price} zł`).join('\n');
-  alert(`🛒 Twój koszyk:\n\n${items}\n\nRazem: ${total} zł\n\nSystem płatności wkrótce dostępny!`);
+  if (!cart.length) { toast('Koszyk jest pusty!'); return; }
+  const total = cart.reduce((s,i) => s+i.price, 0);
+  alert('🛒 Koszyk:\n\n' + cart.map(i=>`• ${i.name} — ${i.price} zł`).join('\n') + `\n\nRazem: ${total} zł\n\nSystem płatności wkrótce!`);
 }
 
 function filterCat(el, cat) {
@@ -728,37 +590,51 @@ function filterCat(el, cat) {
   });
 }
 
-function subscribeEmail() {
-  const v = document.getElementById('emailInput').value;
-  if (!v.includes('@')) { showToast('Podaj poprawny email!'); return; }
-  showToast('Zapisano! Sprawdź maila po kod -10% 🎉');
-  document.getElementById('emailInput').value = '';
+function subscribe() {
+  const v = document.getElementById('nlEmail').value;
+  if (!v.includes('@')) { toast('Podaj poprawny email!'); return; }
+  toast('Zapisano! Sprawdź skrzynkę — wysyłamy kod -10% 🎉');
+  document.getElementById('nlEmail').value = '';
 }
 
-// Animacja przy scrollu
-const observer = new IntersectionObserver(entries => {
+let toastTimer;
+function toast(msg) {
+  const el = document.getElementById('toast');
+  el.innerHTML = '🛒 ' + msg;
+  el.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => el.classList.remove('show'), 3000);
+}
+
+// Scroll animation
+const obs = new IntersectionObserver(entries => {
   entries.forEach(e => {
     if (e.isIntersecting) {
       e.target.style.opacity = 1;
       e.target.style.transform = 'translateY(0)';
     }
   });
-}, { threshold: 0.1 });
-
-document.querySelectorAll('.card, .feat-card, .review-card, .step').forEach(el => {
+}, {threshold: 0.08});
+document.querySelectorAll('.card,.feat,.rev,.step').forEach(el => {
   el.style.opacity = 0;
-  el.style.transform = 'translateY(24px)';
+  el.style.transform = 'translateY(28px)';
   el.style.transition = 'opacity .5s ease, transform .5s ease';
-  observer.observe(el);
+  obs.observe(el);
 });
 
-// Powiadomienie toast przy wejściu po 3s
-setTimeout(() => {
-  showToast('Ktoś właśnie kupił Masażer Pro X6 w Warszawie!');
-}, 3000);
-setTimeout(() => {
-  showToast('Dostępny kupon: SMART1 — darmowa dostawa!');
-}, 12000);
+// Powiadomienia socjalne
+const notifications = [
+  'Ktoś z Warszawy właśnie kupił Masażer Pro X6!',
+  'Ktoś z Krakowa dodał Lampkę LED do koszyka!',
+  'Nowa opinia 5★ na Korektor Postawy!',
+  'Ktoś z Gdańska kupił Ładowarkę 3w1!',
+  'Zostało tylko 7 szt. Masażera Pro X6!'
+];
+let ni = 0;
+setTimeout(function loop() {
+  toast(notifications[ni++ % notifications.length]);
+  setTimeout(loop, 12000);
+}, 4000);
 </script>
 </body>
 </html>
