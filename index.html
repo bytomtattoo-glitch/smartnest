@@ -16,12 +16,10 @@
 }
 html{scroll-behavior:smooth}
 body{font-family:'Inter',system-ui,sans-serif;background:var(--dark);color:var(--text);overflow-x:hidden}
-
-/* SCROLLBAR */
 ::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:#0e1318}::-webkit-scrollbar-thumb{background:#1e2832;border-radius:3px}
 
 /* NAV */
-nav{position:fixed;top:0;width:100%;z-index:200;padding:0 6%;height:64px;display:flex;align-items:center;justify-content:space-between;transition:.3s;background:rgba(8,12,16,.85);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,.06)}
+nav{position:fixed;top:0;width:100%;z-index:200;padding:0 6%;height:64px;display:flex;align-items:center;justify-content:space-between;transition:.3s;background:rgba(8,12,16,.9);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,.06)}
 .logo{display:flex;align-items:center;gap:10px;text-decoration:none}
 .logo-icon{width:36px;height:36px;background:var(--grad);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.1rem}
 .logo-text{font-size:1.2rem;font-weight:800;color:var(--text)}
@@ -36,9 +34,13 @@ nav{position:fixed;top:0;width:100%;z-index:200;padding:0 6%;height:64px;display
 .cta-nav{background:var(--grad);color:#000;padding:8px 20px;border-radius:10px;text-decoration:none;font-weight:700;font-size:.85rem;transition:.2s}
 .cta-nav:hover{opacity:.9;transform:translateY(-1px)}
 
+/* TOP BAR */
+.topbar{background:var(--grad);text-align:center;padding:10px;font-size:.82rem;font-weight:700;color:#000;position:relative;z-index:201}
+.topbar span{background:rgba(0,0,0,.15);padding:2px 8px;border-radius:4px;margin-left:8px}
+
 /* HERO */
-.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:80px 6% 60px;position:relative;overflow:hidden}
-.hero::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(ellipse 60% 40% at 50% 30%,rgba(0,212,170,.1),transparent 70%);pointer-events:none}
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 6% 60px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(ellipse 60% 40% at 50% 30%,rgba(0,212,170,.12),transparent 70%);pointer-events:none}
 .hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(0,212,170,.1);border:1px solid rgba(0,212,170,.25);color:var(--g);padding:6px 16px;border-radius:100px;font-size:.78rem;font-weight:600;margin-bottom:24px;animation:fadeUp .6s ease}
 .hero-badge::before{content:'●';animation:pulse 2s infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
@@ -82,16 +84,73 @@ nav{position:fixed;top:0;width:100%;z-index:200;padding:0 6%;height:64px;display
 .cat:hover,.cat.active{background:rgba(0,212,170,.1);border-color:var(--g);color:var(--g)}
 
 /* PRODUKTY */
-.products{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:20px}
+.products{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px}
 .card{background:var(--card);border:1px solid var(--border);border-radius:18px;overflow:hidden;transition:.3s;cursor:pointer;position:relative}
-.card:hover{border-color:var(--g);transform:translateY(-5px);box-shadow:0 16px 40px rgba(0,212,170,.12)}
-.card-badge{position:absolute;top:14px;left:14px;z-index:1;padding:4px 10px;border-radius:6px;font-size:.72rem;font-weight:800}
+.card:hover{border-color:var(--g);transform:translateY(-6px);box-shadow:0 20px 50px rgba(0,212,170,.15)}
+.card-badge{position:absolute;top:14px;left:14px;z-index:2;padding:5px 12px;border-radius:8px;font-size:.72rem;font-weight:800;letter-spacing:.03em}
 .badge-sale{background:#ff4455;color:#fff}
 .badge-new{background:var(--grad);color:#000}
 .badge-hit{background:#ffd700;color:#000}
-.card-media{height:180px;display:flex;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(135deg,#0e1318,#151d26);gap:8px}
-.card-media .prod-icon{font-size:3.5rem;filter:drop-shadow(0 4px 12px rgba(0,212,170,.3))}
-.card-media .prod-sub{font-size:.7rem;color:var(--muted)}
+
+/* PRODUCT IMAGE AREA */
+.card-media{height:200px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.prod-img-wrap{width:140px;height:140px;position:relative;z-index:1;display:flex;align-items:center;justify-content:center}
+.prod-bg-glow{position:absolute;width:160px;height:160px;border-radius:50%;opacity:.25;filter:blur(30px)}
+
+/* Masażer */
+.massager-img{position:relative;width:100px;height:130px}
+.massager-body{position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:32px;height:100px;background:linear-gradient(180deg,#2a3a4a,#1a2530);border-radius:16px;border:2px solid #3a4a5a}
+.massager-head{position:absolute;top:0;left:50%;transform:translateX(-50%);width:24px;height:40px;background:linear-gradient(180deg,#00d4aa,#00a8ff);border-radius:12px;box-shadow:0 0 20px rgba(0,212,170,.6)}
+.massager-grip{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);width:38px;height:12px;background:#151d26;border-radius:6px;border:1px solid #2a3a4a}
+.massager-btn{position:absolute;top:45px;left:50%;transform:translateX(-50%);width:10px;height:10px;border-radius:50%;background:#00d4aa;box-shadow:0 0 8px rgba(0,212,170,.8)}
+
+/* Lampka */
+.lamp-img{position:relative;width:100px;height:130px;display:flex;flex-direction:column;align-items:center;justify-content:flex-end}
+.lamp-shade{width:0;height:0;border-left:40px solid transparent;border-right:40px solid transparent;border-bottom:55px solid;border-bottom-color:rgba(0,212,170,.4);position:absolute;top:10px;left:50%;transform:translateX(-50%);filter:drop-shadow(0 0 15px rgba(0,200,255,.6))}
+.lamp-shade::after{content:'';position:absolute;top:10px;left:-30px;width:0;height:0;border-left:30px solid transparent;border-right:30px solid transparent;border-bottom:40px solid rgba(0,212,170,.2)}
+.lamp-stem{width:6px;height:40px;background:linear-gradient(180deg,#3a4a5a,#2a3a4a);position:absolute;bottom:15px;left:50%;transform:translateX(-50%);border-radius:3px}
+.lamp-base{width:50px;height:10px;background:linear-gradient(90deg,#2a3a4a,#3a4a5a,#2a3a4a);border-radius:5px;position:absolute;bottom:5px;left:50%;transform:translateX(-50%)}
+.lamp-glow{position:absolute;top:20px;left:50%;transform:translateX(-50%);width:60px;height:60px;border-radius:50%;background:radial-gradient(circle,rgba(0,212,170,.5),transparent 70%);animation:lampPulse 2s ease-in-out infinite}
+@keyframes lampPulse{0%,100%{opacity:.6;transform:translateX(-50%) scale(1)}50%{opacity:1;transform:translateX(-50%) scale(1.2)}}
+
+/* Korektor */
+.posture-img{position:relative;width:100px;height:130px;display:flex;align-items:center;justify-content:center}
+.posture-body{width:70px;height:90px;background:linear-gradient(135deg,#1e3a4a,#0e2030);border-radius:35px 35px 20px 20px;border:2px solid #2a4a5a;position:relative;display:flex;align-items:center;justify-content:center}
+.posture-screen{width:40px;height:50px;background:linear-gradient(135deg,#001a2a,#002a3a);border-radius:6px;border:1px solid #00d4aa;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px}
+.posture-line{height:3px;border-radius:2px;background:linear-gradient(90deg,var(--g),var(--g2))}
+.posture-dot{width:10px;height:10px;border-radius:50%;background:var(--g);box-shadow:0 0 8px rgba(0,212,170,.8);animation:blinkDot 1.5s ease-in-out infinite}
+@keyframes blinkDot{0%,100%{opacity:1}50%{opacity:.3}}
+.posture-strap{position:absolute;top:-5px;left:-15px;width:100px;height:8px;background:linear-gradient(90deg,#2a3a4a,#1a2530,#2a3a4a);border-radius:4px}
+
+/* Ładowarka */
+.charger-img{position:relative;width:110px;height:110px;display:flex;align-items:center;justify-content:center}
+.charger-pad{width:100px;height:75px;background:linear-gradient(135deg,#0e2030,#1a3040);border-radius:20px;border:2px solid #2a4050;position:relative;display:flex;align-items:center;justify-content:space-around;padding:0 10px}
+.charger-slot{width:26px;height:26px;border-radius:8px;border:2px solid;display:flex;align-items:center;justify-content:center;font-size:14px}
+.charger-slot.phone{border-color:#00d4aa;background:rgba(0,212,170,.1)}
+.charger-slot.watch{border-color:#00a8ff;background:rgba(0,168,255,.1)}
+.charger-slot.buds{border-color:#7b2fff;background:rgba(123,47,255,.1)}
+.charger-lightning{position:absolute;bottom:-15px;left:50%;transform:translateX(-50%);font-size:18px;animation:bolt 1s ease-in-out infinite}
+@keyframes bolt{0%,100%{opacity:1;transform:translateX(-50%) scale(1)}50%{opacity:.5;transform:translateX(-50%) scale(.8)}}
+
+/* Butelka */
+.bottle-img{position:relative;width:60px;height:130px;display:flex;flex-direction:column;align-items:center}
+.bottle-cap{width:30px;height:20px;background:linear-gradient(135deg,#00d4aa,#00a8ff);border-radius:8px 8px 0 0}
+.bottle-neck{width:22px;height:15px;background:linear-gradient(90deg,#0e2a3a,#1a3a4a);margin-top:0}
+.bottle-body{width:50px;height:90px;background:linear-gradient(135deg,#0a2535,#1a3545);border-radius:8px 8px 12px 12px;position:relative;overflow:hidden;border:1.5px solid #2a4050}
+.bottle-water{position:absolute;bottom:0;width:100%;background:linear-gradient(180deg,rgba(0,212,170,.4),rgba(0,168,255,.3));border-radius:0 0 10px 10px;animation:waterLevel 3s ease-in-out infinite}
+@keyframes waterLevel{0%,100%{height:55%}50%{height:65%}}
+.bottle-uv{position:absolute;top:8px;right:6px;width:12px;height:12px;border-radius:50%;background:rgba(120,220,255,.9);box-shadow:0 0 10px rgba(100,200,255,.8);animation:uvPulse 2s ease-in-out infinite}
+@keyframes uvPulse{0%,100%{opacity:.8;box-shadow:0 0 10px rgba(100,200,255,.8)}50%{opacity:1;box-shadow:0 0 18px rgba(100,200,255,1)}}
+
+/* Organizer */
+.organizer-img{position:relative;width:120px;height:110px;display:flex;align-items:flex-end;justify-content:center;gap:6px}
+.org-slot{background:linear-gradient(180deg,#1a2a3a,#0e1a28);border:1.5px solid #2a3a4a;border-radius:6px;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding:4px 4px 6px;position:relative;overflow:hidden}
+.org-slot::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--grad);opacity:.6;border-radius:4px 4px 0 0}
+.slot-wide{width:36px;height:80px}
+.slot-mid{width:28px;height:65px}
+.slot-small{width:22px;height:50px}
+.org-item{width:80%;height:6px;border-radius:3px;margin-bottom:3px;opacity:.8}
+
 .card-body{padding:18px}
 .card-body h3{font-weight:700;font-size:.95rem;margin-bottom:6px}
 .card-body .desc{font-size:.8rem;color:var(--muted);line-height:1.5;margin-bottom:14px}
@@ -99,8 +158,8 @@ nav{position:fixed;top:0;width:100%;z-index:200;padding:0 6%;height:64px;display
 .prices{display:flex;flex-direction:column}
 .price-now{font-size:1.25rem;font-weight:800;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 .price-was{font-size:.75rem;color:var(--muted);text-decoration:line-through}
-.add-cart{width:40px;height:40px;border-radius:10px;background:var(--grad);border:none;cursor:pointer;font-size:1.1rem;transition:.2s;display:flex;align-items:center;justify-content:center}
-.add-cart:hover{transform:scale(1.1)}
+.add-cart{width:42px;height:42px;border-radius:10px;background:var(--grad);border:none;cursor:pointer;font-size:1.1rem;transition:.2s;display:flex;align-items:center;justify-content:center;color:#000;font-weight:800}
+.add-cart:hover{transform:scale(1.1);box-shadow:0 4px 16px rgba(0,212,170,.4)}
 .stars-row{display:flex;gap:2px;margin-bottom:10px;align-items:center}
 .stars-row span{color:#ffc107;font-size:.85rem}
 .stars-row small{color:var(--muted);font-size:.75rem;margin-left:4px}
@@ -108,6 +167,15 @@ nav{position:fixed;top:0;width:100%;z-index:200;padding:0 6%;height:64px;display
 .stock-label{display:flex;justify-content:space-between;font-size:.72rem;color:var(--muted);margin-bottom:4px}
 .bar{height:4px;background:var(--border);border-radius:2px;overflow:hidden}
 .bar-fill{height:100%;background:var(--grad);border-radius:2px}
+
+/* COUNTDOWN */
+.countdown-wrap{background:rgba(0,212,170,.05);border:1px solid rgba(0,212,170,.2);border-radius:16px;padding:20px 24px;margin-bottom:40px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
+.countdown-label{font-size:.82rem;color:var(--muted);font-weight:600}
+.countdown-label strong{color:var(--g);font-size:.95rem}
+.countdown-timer{display:flex;gap:12px}
+.cd-unit{text-align:center;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:8px 16px;min-width:60px}
+.cd-unit .cd-num{font-size:1.5rem;font-weight:900;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;display:block}
+.cd-unit .cd-lbl{font-size:.65rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
 
 /* FEATURES */
 .features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
@@ -160,7 +228,7 @@ footer{background:var(--card);border-top:1px solid var(--border);padding:48px 6%
 .footer-col ul{list-style:none;display:flex;flex-direction:column;gap:10px}
 .footer-col a{color:var(--muted);text-decoration:none;font-size:.85rem;transition:.2s}
 .footer-col a:hover{color:var(--g)}
-.footer-bottom{border-top:1px solid var(--border);padding-top:20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:gap;color:var(--muted);font-size:.8rem;flex-wrap:wrap;gap:12px}
+.footer-bottom{border-top:1px solid var(--border);padding-top:20px;display:flex;justify-content:space-between;align-items:center;color:var(--muted);font-size:.8rem;flex-wrap:wrap;gap:12px}
 .payment-icons{display:flex;gap:8px}
 .pay-icon{background:#1e2832;border-radius:6px;padding:4px 10px;font-size:.75rem;font-weight:600}
 
@@ -168,16 +236,25 @@ footer{background:var(--card);border-top:1px solid var(--border);padding:48px 6%
 .toast{position:fixed;bottom:24px;right:24px;background:var(--card);border:1px solid var(--g);border-radius:12px;padding:14px 20px;display:flex;align-items:center;gap:10px;font-size:.88rem;z-index:999;transform:translateY(100px);opacity:0;transition:.3s}
 .toast.show{transform:translateY(0);opacity:1}
 
-/* MOBILE */
+/* LIVE BADGE */
+.live-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(255,68,85,.1);border:1px solid rgba(255,68,85,.3);color:#ff4455;padding:4px 12px;border-radius:100px;font-size:.72rem;font-weight:700;margin-left:12px}
+.live-dot{width:6px;height:6px;border-radius:50%;background:#ff4455;animation:pulse 1s infinite}
+
 @media(max-width:768px){
   .nav-links{display:none}
   .hero h1{font-size:2.2rem}
   .cta-banner{padding:36px 24px}
   .cta-banner h2{font-size:1.4rem}
+  .countdown-wrap{flex-direction:column}
 }
 </style>
 </head>
 <body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  🎁 Darmowa dostawa na pierwsze zamówienie — kod: <span>SMART1</span> &nbsp;|&nbsp; Oferta kończy się za: <span id="topTimer">ładowanie...</span>
+</div>
 
 <!-- NAV -->
 <nav>
@@ -201,7 +278,11 @@ footer{background:var(--card);border-top:1px solid var(--border);padding:48px 6%
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-badge">🟢 Ponad 2400 zadowolonych klientów w Polsce</div>
+  <div>
+    <div class="hero-badge">🟢 Ponad 2400 zadowolonych klientów w Polsce
+      <span class="live-badge"><span class="live-dot"></span><span id="viewers">247</span> osób teraz</span>
+    </div>
+  </div>
   <h1>Gadżety które<br><span class="grad">zmieniają codzienność</span></h1>
   <p>Smart home, zdrowie i produktywność w jednym miejscu. Sprawdzone produkty, dostawa 48h, pełna gwarancja zwrotu.</p>
   <div class="hero-btns">
@@ -218,7 +299,7 @@ footer{background:var(--card);border-top:1px solid var(--border);padding:48px 6%
 
 <!-- MARQUEE -->
 <div class="marquee-wrap">
-  <div class="marquee-track" id="marqueeTrack">
+  <div class="marquee-track">
     <div class="marquee-item"><span class="dot"></span> Masażery perkusyjne</div>
     <div class="marquee-item"><span class="dot"></span> Inteligentne lampki LED</div>
     <div class="marquee-item"><span class="dot"></span> Korektory postawy</div>
@@ -251,9 +332,22 @@ footer{background:var(--card);border-top:1px solid var(--border);padding:48px 6%
 
 <!-- PRODUKTY -->
 <div class="section" id="produkty">
-  <div class="section-tag">🔥 Bestsellery</div>
+  <div class="section-tag">🔥 Bestsellery 2026</div>
   <h2>Nasze topowe produkty</h2>
   <p class="sub">Wybrane ręcznie — tylko to co faktycznie działa i sprzedaje się najlepiej</p>
+
+  <!-- COUNTDOWN -->
+  <div class="countdown-wrap">
+    <div class="countdown-label">
+      ⚡ <strong>Flash Sale — tylko dziś!</strong><br>
+      <span>Zniżki -40% wygasają za:</span>
+    </div>
+    <div class="countdown-timer">
+      <div class="cd-unit"><span class="cd-num" id="cdH">00</span><span class="cd-lbl">godz</span></div>
+      <div class="cd-unit"><span class="cd-num" id="cdM">00</span><span class="cd-lbl">min</span></div>
+      <div class="cd-unit"><span class="cd-num" id="cdS">00</span><span class="cd-lbl">sek</span></div>
+    </div>
+  </div>
 
   <div class="cats">
     <div class="cat active" onclick="filterCat(this,'all')">Wszystkie</div>
@@ -263,9 +357,22 @@ footer{background:var(--card);border-top:1px solid var(--border);padding:48px 6%
   </div>
 
   <div class="products">
+
+    <!-- MASAŻER -->
     <div class="card" data-cat="zdrowie">
       <div class="card-badge badge-hit">🔥 HIT</div>
-      <div class="card-media"><div class="prod-icon">💆</div><div class="prod-sub">Masażer perkusyjny</div></div>
+      <div class="card-media" style="background:linear-gradient(135deg,#051520,#0a2535)">
+        <div class="prod-bg-glow" style="background:radial-gradient(circle,#00d4aa,transparent)"></div>
+        <div class="prod-img-wrap">
+          <div class="massager-img">
+            <div class="massager-head"></div>
+            <div class="massager-body">
+              <div class="massager-btn"></div>
+            </div>
+            <div class="massager-grip"></div>
+          </div>
+        </div>
+      </div>
       <div class="card-body">
         <div class="stars-row"><span>★★★★★</span><small>(312 opinii)</small></div>
         <h3>Masażer Perkusyjny Pro X6</h3>
@@ -273,14 +380,25 @@ footer{background:var(--card);border-top:1px solid var(--border);padding:48px 6%
         <div class="stock-bar"><div class="stock-label"><span>⚡ Zostało tylko 7 szt.</span><span>87% sprzedane</span></div><div class="bar"><div class="bar-fill" style="width:87%"></div></div></div>
         <div class="card-footer" style="margin-top:14px">
           <div class="prices"><div class="price-now">149 zł</div><div class="price-was">299 zł (-50%)</div></div>
-          <button class="add-cart" onclick="addToCart('Masażer Perkusyjny Pro X6',149,this)">🛒</button>
+          <button class="add-cart" onclick="addToCart('Masażer Perkusyjny Pro X6',149,this)">+</button>
         </div>
       </div>
     </div>
 
+    <!-- LAMPKA -->
     <div class="card" data-cat="smart">
       <div class="card-badge badge-new">✨ NOWE</div>
-      <div class="card-media"><div class="prod-icon">💡</div><div class="prod-sub">Lampka LED Smart</div></div>
+      <div class="card-media" style="background:linear-gradient(135deg,#051520,#0a2030)">
+        <div class="prod-bg-glow" style="background:radial-gradient(circle,#00d4ff,transparent)"></div>
+        <div class="prod-img-wrap">
+          <div class="lamp-img">
+            <div class="lamp-glow"></div>
+            <div class="lamp-shade"></div>
+            <div class="lamp-stem"></div>
+            <div class="lamp-base"></div>
+          </div>
+        </div>
+      </div>
       <div class="card-body">
         <div class="stars-row"><span>★★★★★</span><small>(198 opinii)</small></div>
         <h3>Lampka LED RGB Smart WiFi</h3>
@@ -288,14 +406,29 @@ footer{background:var(--card);border-top:1px solid var(--border);padding:48px 6%
         <div class="stock-bar"><div class="stock-label"><span>⚡ Zostało 15 szt.</span><span>73% sprzedane</span></div><div class="bar"><div class="bar-fill" style="width:73%"></div></div></div>
         <div class="card-footer" style="margin-top:14px">
           <div class="prices"><div class="price-now">89 zł</div><div class="price-was">149 zł (-40%)</div></div>
-          <button class="add-cart" onclick="addToCart('Lampka LED RGB Smart WiFi',89,this)">🛒</button>
+          <button class="add-cart" onclick="addToCart('Lampka LED RGB Smart WiFi',89,this)">+</button>
         </div>
       </div>
     </div>
 
+    <!-- KOREKTOR -->
     <div class="card" data-cat="zdrowie">
       <div class="card-badge badge-sale">-40%</div>
-      <div class="card-media"><div class="prod-icon">🧘</div><div class="prod-sub">Korektor postawy</div></div>
+      <div class="card-media" style="background:linear-gradient(135deg,#051520,#0a2535)">
+        <div class="prod-bg-glow" style="background:radial-gradient(circle,#7b2fff,transparent)"></div>
+        <div class="prod-img-wrap">
+          <div class="posture-img">
+            <div class="posture-strap"></div>
+            <div class="posture-body">
+              <div class="posture-screen">
+                <div class="posture-dot"></div>
+                <div class="posture-line" style="width:28px"></div>
+                <div class="posture-line" style="width:20px;opacity:.6"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       <div class="card-body">
         <div class="stars-row"><span>★★★★☆</span><small>(256 opinii)</small></div>
         <h3>Korektor Postawy Smart Vibe</h3>
@@ -303,14 +436,27 @@ footer{background:var(--card);border-top:1px solid var(--border);padding:48px 6%
         <div class="stock-bar"><div class="stock-label"><span>⚡ Zostało 11 szt.</span><span>80% sprzedane</span></div><div class="bar"><div class="bar-fill" style="width:80%"></div></div></div>
         <div class="card-footer" style="margin-top:14px">
           <div class="prices"><div class="price-now">119 zł</div><div class="price-was">199 zł (-40%)</div></div>
-          <button class="add-cart" onclick="addToCart('Korektor Postawy Smart Vibe',119,this)">🛒</button>
+          <button class="add-cart" onclick="addToCart('Korektor Postawy Smart Vibe',119,this)">+</button>
         </div>
       </div>
     </div>
 
+    <!-- ŁADOWARKA -->
     <div class="card" data-cat="produktywnosc">
       <div class="card-badge badge-new">✨ NOWE</div>
-      <div class="card-media"><div class="prod-icon">⚡</div><div class="prod-sub">Ładowarka 3w1</div></div>
+      <div class="card-media" style="background:linear-gradient(135deg,#051a10,#0a2520)">
+        <div class="prod-bg-glow" style="background:radial-gradient(circle,#00ff88,transparent)"></div>
+        <div class="prod-img-wrap">
+          <div class="charger-img">
+            <div class="charger-pad">
+              <div class="charger-slot phone">📱</div>
+              <div class="charger-slot watch">⌚</div>
+              <div class="charger-slot buds">🎧</div>
+            </div>
+            <div class="charger-lightning">⚡</div>
+          </div>
+        </div>
+      </div>
       <div class="card-body">
         <div class="stars-row"><span>★★★★★</span><small>(144 opinii)</small></div>
         <h3>Ładowarka Bezprzewodowa 3w1</h3>
@@ -318,14 +464,27 @@ footer{background:var(--card);border-top:1px solid var(--border);padding:48px 6%
         <div class="stock-bar"><div class="stock-label"><span>⚡ Zostało 9 szt.</span><span>91% sprzedane</span></div><div class="bar"><div class="bar-fill" style="width:91%"></div></div></div>
         <div class="card-footer" style="margin-top:14px">
           <div class="prices"><div class="price-now">129 zł</div><div class="price-was">219 zł (-41%)</div></div>
-          <button class="add-cart" onclick="addToCart('Ładowarka Bezprzewodowa 3w1',129,this)">🛒</button>
+          <button class="add-cart" onclick="addToCart('Ładowarka Bezprzewodowa 3w1',129,this)">+</button>
         </div>
       </div>
     </div>
 
+    <!-- BUTELKA -->
     <div class="card" data-cat="zdrowie">
       <div class="card-badge badge-hit">💧 EKO</div>
-      <div class="card-media"><div class="prod-icon">🧴</div><div class="prod-sub">Butelka UV</div></div>
+      <div class="card-media" style="background:linear-gradient(135deg,#051520,#051a25)">
+        <div class="prod-bg-glow" style="background:radial-gradient(circle,#00aaff,transparent)"></div>
+        <div class="prod-img-wrap">
+          <div class="bottle-img">
+            <div class="bottle-cap"></div>
+            <div class="bottle-neck"></div>
+            <div class="bottle-body">
+              <div class="bottle-water"></div>
+              <div class="bottle-uv"></div>
+            </div>
+          </div>
+        </div>
+      </div>
       <div class="card-body">
         <div class="stars-row"><span>★★★★★</span><small>(89 opinii)</small></div>
         <h3>Butelka z filtrem UV Pro</h3>
@@ -333,14 +492,33 @@ footer{background:var(--card);border-top:1px solid var(--border);padding:48px 6%
         <div class="stock-bar"><div class="stock-label"><span>⚡ Zostało 18 szt.</span><span>65% sprzedane</span></div><div class="bar"><div class="bar-fill" style="width:65%"></div></div></div>
         <div class="card-footer" style="margin-top:14px">
           <div class="prices"><div class="price-now">99 zł</div><div class="price-was">169 zł (-41%)</div></div>
-          <button class="add-cart" onclick="addToCart('Butelka z filtrem UV Pro',99,this)">🛒</button>
+          <button class="add-cart" onclick="addToCart('Butelka z filtrem UV Pro',99,this)">+</button>
         </div>
       </div>
     </div>
 
+    <!-- ORGANIZER -->
     <div class="card" data-cat="produktywnosc">
       <div class="card-badge badge-sale">-39%</div>
-      <div class="card-media"><div class="prod-icon">🗂️</div><div class="prod-sub">Organizer biurka</div></div>
+      <div class="card-media" style="background:linear-gradient(135deg,#0f1520,#151d28)">
+        <div class="prod-bg-glow" style="background:radial-gradient(circle,#ffd700,transparent)"></div>
+        <div class="prod-img-wrap">
+          <div class="organizer-img">
+            <div class="org-slot slot-wide">
+              <div class="org-item" style="background:#00d4aa;height:8px"></div>
+              <div class="org-item" style="background:#00a8ff;height:8px"></div>
+              <div class="org-item" style="background:#7b2fff;height:6px"></div>
+            </div>
+            <div class="org-slot slot-mid">
+              <div class="org-item" style="background:#ffd700;height:7px"></div>
+              <div class="org-item" style="background:#ff4455;height:6px"></div>
+            </div>
+            <div class="org-slot slot-small">
+              <div class="org-item" style="background:#00d4aa;height:5px"></div>
+            </div>
+          </div>
+        </div>
+      </div>
       <div class="card-body">
         <div class="stars-row"><span>★★★★☆</span><small>(76 opinii)</small></div>
         <h3>Organizer Biurka Magnetic Pro</h3>
@@ -348,10 +526,11 @@ footer{background:var(--card);border-top:1px solid var(--border);padding:48px 6%
         <div class="stock-bar"><div class="stock-label"><span>⚡ Zostało 22 szt.</span><span>59% sprzedane</span></div><div class="bar"><div class="bar-fill" style="width:59%"></div></div></div>
         <div class="card-footer" style="margin-top:14px">
           <div class="prices"><div class="price-now">79 zł</div><div class="price-was">129 zł (-39%)</div></div>
-          <button class="add-cart" onclick="addToCart('Organizer Biurka Magnetic Pro',79,this)">🛒</button>
+          <button class="add-cart" onclick="addToCart('Organizer Biurka Magnetic Pro',79,this)">+</button>
         </div>
       </div>
     </div>
+
   </div>
 </div>
 
@@ -388,7 +567,7 @@ footer{background:var(--card);border-top:1px solid var(--border);padding:48px 6%
 <!-- OPINIE -->
 <div style="background:rgba(14,19,24,.6);padding:1px 0">
 <div class="section" id="opinie">
-  <div class="section-tag">⭐ Opinie</div>
+  <div class="section-tag">⭐ Opinie klientów</div>
   <h2>Co mówią klienci</h2>
   <p class="sub">Prawdziwe opinie bez filtrów — każda zweryfikowana</p>
   <div class="reviews-grid">
@@ -488,15 +667,43 @@ footer{background:var(--card);border-top:1px solid var(--border);padding:48px 6%
 <script>
 let cart = [];
 
+// COUNTDOWN — odlicza do końca dnia
+function updateCountdown() {
+  const now = new Date();
+  const end = new Date(now);
+  end.setHours(23, 59, 59, 0);
+  const diff = end - now;
+  const h = Math.floor(diff / 3600000);
+  const m = Math.floor((diff % 3600000) / 60000);
+  const s = Math.floor((diff % 60000) / 1000);
+  const pad = n => String(n).padStart(2,'0');
+  document.getElementById('cdH').textContent = pad(h);
+  document.getElementById('cdM').textContent = pad(m);
+  document.getElementById('cdS').textContent = pad(s);
+  document.getElementById('topTimer').textContent = `${pad(h)}:${pad(m)}:${pad(s)}`;
+}
+setInterval(updateCountdown, 1000);
+updateCountdown();
+
+// LIVE VIEWERS — symulacja
+function updateViewers() {
+  const base = 247;
+  const v = base + Math.floor(Math.random() * 30 - 15);
+  document.getElementById('viewers').textContent = Math.max(180, v);
+}
+setInterval(updateViewers, 7000);
+
+// KOSZYK
 function addToCart(name, price, btn) {
   event.stopPropagation();
   cart.push({name, price});
   document.getElementById('cartCount').textContent = cart.length;
   const orig = btn.textContent;
-  btn.textContent = '✅';
+  btn.textContent = '✓';
   btn.style.background = '#00d4aa';
-  setTimeout(() => { btn.textContent = orig; btn.style.background = ''; }, 1500);
-  showToast(`${name} dodany!`);
+  btn.style.color = '#000';
+  setTimeout(() => { btn.textContent = orig; btn.style.background = ''; btn.style.color = ''; }, 1500);
+  showToast(`${name} dodany do koszyka!`);
 }
 
 function showToast(msg) {
@@ -530,13 +737,28 @@ function subscribeEmail() {
 
 // Animacja przy scrollu
 const observer = new IntersectionObserver(entries => {
-  entries.forEach(e => { if (e.isIntersecting) { e.target.style.opacity = 1; e.target.style.transform = 'translateY(0)'; } });
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.style.opacity = 1;
+      e.target.style.transform = 'translateY(0)';
+    }
+  });
 }, { threshold: 0.1 });
+
 document.querySelectorAll('.card, .feat-card, .review-card, .step').forEach(el => {
-  el.style.opacity = 0; el.style.transform = 'translateY(20px)';
+  el.style.opacity = 0;
+  el.style.transform = 'translateY(24px)';
   el.style.transition = 'opacity .5s ease, transform .5s ease';
   observer.observe(el);
 });
+
+// Powiadomienie toast przy wejściu po 3s
+setTimeout(() => {
+  showToast('Ktoś właśnie kupił Masażer Pro X6 w Warszawie!');
+}, 3000);
+setTimeout(() => {
+  showToast('Dostępny kupon: SMART1 — darmowa dostawa!');
+}, 12000);
 </script>
 </body>
 </html>
