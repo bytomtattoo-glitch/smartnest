@@ -309,7 +309,7 @@ footer{background:var(--card);border-top:1px solid var(--border);padding:48px 6%
         <p class="desc">6 końcówek, 20 poziomów intensywności. Likwiduje ból mięśni w 5 min. Cichy silnik 40dB, 6h bateria.</p>
         <div class="card-foot">
           <div><div class="price-now">149 zł</div><div class="price-was">299 zł (-50%)</div></div>
-          <button class="add-btn" onclick="addCart('Masażer Perkusyjny Pro X6',149,this)">+</button>
+          <button class="add-btn" onclick="addCart('Masażer Perkusyjny Pro X6',149,this,event)">+</button>
         </div>
       </div>
     </div>
@@ -324,7 +324,7 @@ footer{background:var(--card);border-top:1px solid var(--border);padding:48px 6%
         <p class="desc">16 mln kolorów, kompatybilna z Alexa i Google Home. Sterowanie głosem i aplikacją mobilną 24/7.</p>
         <div class="card-foot">
           <div><div class="price-now">89 zł</div><div class="price-was">149 zł (-40%)</div></div>
-          <button class="add-btn" onclick="addCart('Lampka LED RGB Smart WiFi',89,this)">+</button>
+          <button class="add-btn" onclick="addCart('Lampka LED RGB Smart WiFi',89,this,event)">+</button>
         </div>
       </div>
     </div>
@@ -339,7 +339,7 @@ footer{background:var(--card);border-top:1px solid var(--border);padding:48px 6%
         <p class="desc">Wibruje gdy się garbiś. Bluetooth 5.0, dedykowana aplikacja, tryb sport i biuro.</p>
         <div class="card-foot">
           <div><div class="price-now">119 zł</div><div class="price-was">199 zł (-40%)</div></div>
-          <button class="add-btn" onclick="addCart('Korektor Postawy Smart Vibe',119,this)">+</button>
+          <button class="add-btn" onclick="addCart('Korektor Postawy Smart Vibe',119,this,event)">+</button>
         </div>
       </div>
     </div>
@@ -354,7 +354,7 @@ footer{background:var(--card);border-top:1px solid var(--border);padding:48px 6%
         <p class="desc">Ładuje telefon + słuchawki + zegarek jednocześnie. 15W szybkie ładowanie. Ultracienki design.</p>
         <div class="card-foot">
           <div><div class="price-now">129 zł</div><div class="price-was">219 zł (-41%)</div></div>
-          <button class="add-btn" onclick="addCart('Ładowarka Bezprzewodowa 3w1',129,this)">+</button>
+          <button class="add-btn" onclick="addCart('Ładowarka Bezprzewodowa 3w1',129,this,event)">+</button>
         </div>
       </div>
     </div>
@@ -370,7 +370,7 @@ footer{background:var(--card);border-top:1px solid var(--border);padding:48px 6%
         <p class="desc">Sterylizuje wodę promieniami UV w 60 sekund. 500ml, ładowanie USB-C, stal nierdzewna 316L.</p>
         <div class="card-foot">
           <div><div class="price-now">99 zł</div><div class="price-was">169 zł (-41%)</div></div>
-          <button class="add-btn" onclick="addCart('Butelka z filtrem UV Pro',99,this)">+</button>
+          <button class="add-btn" onclick="addCart('Butelka z filtrem UV Pro',99,this,event)">+</button>
         </div>
       </div>
     </div>
@@ -385,7 +385,7 @@ footer{background:var(--card);border-top:1px solid var(--border);padding:48px 6%
         <p class="desc">Modułowy system z aluminium i silikonu. Na kable, telefon, długopisy. Zero chaosu na biurku.</p>
         <div class="card-foot">
           <div><div class="price-now">79 zł</div><div class="price-was">129 zł (-39%)</div></div>
-          <button class="add-btn" onclick="addCart('Organizer Biurka Magnetic Pro',79,this)">+</button>
+          <button class="add-btn" onclick="addCart('Organizer Biurka Magnetic Pro',79,this,event)">+</button>
         </div>
       </div>
     </div>
@@ -562,8 +562,8 @@ let cart = [];
 
 
 // KOSZYK
-function addCart(name, price, btn) {
-  if (event) event.stopPropagation();
+function addCart(name, price, btn, e) {
+  if (e) e.stopPropagation();
   const existing = cart.find(i => i.name === name);
   if (existing) { existing.qty++; } else { cart.push({name, price, qty:1}); }
   const total = cart.reduce((s,i) => s + i.qty, 0);
@@ -645,21 +645,35 @@ function toast(msg) {
   toastTimer = setTimeout(() => el.classList.remove('show'), 3000);
 }
 
-// Scroll animation
-const obs = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.style.opacity = 1;
-      e.target.style.transform = 'translateY(0)';
-    }
+// Scroll animation - bezpieczna wersja z fallback
+try {
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = 1;
+        e.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, {threshold: 0.05, rootMargin: '0px 0px -20px 0px'});
+  document.querySelectorAll('.card,.feat,.step').forEach(el => {
+    el.style.opacity = 0;
+    el.style.transform = 'translateY(24px)';
+    el.style.transition = 'opacity .4s ease, transform .4s ease';
+    obs.observe(el);
   });
-}, {threshold: 0.08});
-document.querySelectorAll('.card,.feat,.rev,.step').forEach(el => {
-  el.style.opacity = 0;
-  el.style.transform = 'translateY(28px)';
-  el.style.transition = 'opacity .5s ease, transform .5s ease';
-  obs.observe(el);
-});
+  // Fallback - pokaz wszystko po 1.5s jeśli nie zaladowalo
+  setTimeout(() => {
+    document.querySelectorAll('.card,.feat,.step').forEach(el => {
+      el.style.opacity = 1;
+      el.style.transform = 'translateY(0)';
+    });
+  }, 1500);
+} catch(err) {
+  // Brak support IntersectionObserver - pokaz wszystko
+  document.querySelectorAll('.card,.feat,.step').forEach(el => {
+    el.style.opacity = 1;
+  });
+}
 
 </script>
 </body>
