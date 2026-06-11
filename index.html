@@ -175,6 +175,32 @@ footer{background:var(--card);border-top:1px solid var(--border);padding:48px 6%
 .toast{position:fixed;bottom:24px;right:24px;background:var(--card);border:1px solid var(--g);border-radius:14px;padding:14px 20px;display:flex;align-items:center;gap:10px;font-size:.88rem;z-index:999;transform:translateY(120px);opacity:0;transition:.35s;max-width:340px;box-shadow:0 8px 30px rgba(0,212,170,.2)}
 .toast.show{transform:translateY(0);opacity:1}
 
+/* MODAL ZAMÓWIENIE */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:500;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:.3s}
+.modal-overlay.open{opacity:1;pointer-events:all}
+.modal{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:32px;max-width:520px;width:100%;max-height:90vh;overflow-y:auto;position:relative}
+.modal h3{font-size:1.3rem;font-weight:800;margin-bottom:6px}
+.modal .modal-sub{color:var(--muted);font-size:.85rem;margin-bottom:24px}
+.modal-close{position:absolute;top:16px;right:16px;background:transparent;border:none;color:var(--muted);font-size:1.4rem;cursor:pointer;line-height:1;padding:4px}
+.modal-close:hover{color:var(--text)}
+.cart-summary{background:rgba(0,212,170,.06);border:1px solid rgba(0,212,170,.2);border-radius:12px;padding:16px;margin-bottom:20px}
+.cart-summary h4{font-size:.85rem;color:var(--g);font-weight:700;margin-bottom:10px}
+.cart-item{display:flex;justify-content:space-between;font-size:.85rem;padding:4px 0;color:var(--text)}
+.cart-total{border-top:1px solid rgba(0,212,170,.2);margin-top:10px;padding-top:10px;font-weight:800;font-size:1rem;display:flex;justify-content:space-between}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.form-group{margin-bottom:14px}
+.form-group label{display:block;font-size:.8rem;font-weight:600;color:var(--muted);margin-bottom:6px}
+.form-group input,.form-group textarea,.form-group select{width:100%;padding:12px 14px;background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:10px;color:var(--text);font-size:.9rem;outline:none;font-family:inherit}
+.form-group input:focus,.form-group textarea:focus,.form-group select:focus{border-color:var(--g)}
+.form-group textarea{resize:vertical;min-height:80px}
+.pay-note{background:rgba(255,200,0,.07);border:1px solid rgba(255,200,0,.25);border-radius:10px;padding:12px;font-size:.8rem;color:#ffd700;margin-bottom:16px}
+.btn-submit{width:100%;background:var(--grad);color:#000;border:none;padding:16px;border-radius:12px;font-size:1rem;font-weight:800;cursor:pointer;transition:.2s}
+.btn-submit:hover{opacity:.9;transform:translateY(-1px)}
+.success-msg{text-align:center;padding:20px 0}
+.success-msg .ok-icon{font-size:3rem;margin-bottom:16px}
+.success-msg h3{margin-bottom:10px}
+.success-msg p{color:var(--muted);font-size:.9rem;line-height:1.6}
+
 @media(max-width:768px){
   .nav-links{display:none}
   .hero h1{font-size:2.2rem}
@@ -222,7 +248,7 @@ footer{background:var(--card);border-top:1px solid var(--border);padding:48px 6%
   <div class="trust-row">
     <div class="trust-pill"><span class="ti">🚚</span> Dostawa 7–14 dni</div>
     <div class="trust-pill"><span class="ti">🔄</span> 30 dni zwrotu</div>
-    <div class="trust-pill"><span class="ti">🔒</span> SSL + BLIK</div>
+    <div class="trust-pill"><span class="ti">🔒</span> Przelew lub BLIK</div>
     <div class="trust-pill"><span class="ti">📦</span> Śledzenie przesyłki</div>
   </div>
 </section>
@@ -279,13 +305,8 @@ footer{background:var(--card);border-top:1px solid var(--border);padding:48px 6%
         <div class="img-overlay"></div>
       </div>
       <div class="card-body">
-        <div class="stars">★★★★★ <small>(312 opinii)</small></div>
         <h3>Masażer Perkusyjny Pro X6</h3>
         <p class="desc">6 końcówek, 20 poziomów intensywności. Likwiduje ból mięśni w 5 min. Cichy silnik 40dB, 6h bateria.</p>
-        <div class="stock-row">
-          <div class="stock-top"><span>⚡ Zostało 7 szt.</span><span>87% sprzedane</span></div>
-          <div class="bar"><div class="bar-f" style="width:87%"></div></div>
-        </div>
         <div class="card-foot">
           <div><div class="price-now">149 zł</div><div class="price-was">299 zł (-50%)</div></div>
           <button class="add-btn" onclick="addCart('Masażer Perkusyjny Pro X6',149,this)">+</button>
@@ -299,13 +320,8 @@ footer{background:var(--card);border-top:1px solid var(--border);padding:48px 6%
         <div class="img-overlay"></div>
       </div>
       <div class="card-body">
-        <div class="stars">★★★★★ <small>(198 opinii)</small></div>
         <h3>Lampka LED RGB Smart WiFi</h3>
         <p class="desc">16 mln kolorów, kompatybilna z Alexa i Google Home. Sterowanie głosem i aplikacją mobilną 24/7.</p>
-        <div class="stock-row">
-          <div class="stock-top"><span>⚡ Zostało 15 szt.</span><span>73% sprzedane</span></div>
-          <div class="bar"><div class="bar-f" style="width:73%"></div></div>
-        </div>
         <div class="card-foot">
           <div><div class="price-now">89 zł</div><div class="price-was">149 zł (-40%)</div></div>
           <button class="add-btn" onclick="addCart('Lampka LED RGB Smart WiFi',89,this)">+</button>
@@ -319,13 +335,8 @@ footer{background:var(--card);border-top:1px solid var(--border);padding:48px 6%
         <div class="img-overlay"></div>
       </div>
       <div class="card-body">
-        <div class="stars">★★★★☆ <small>(256 opinii)</small></div>
         <h3>Korektor Postawy Smart Vibe</h3>
         <p class="desc">Wibruje gdy się garbiś. Bluetooth 5.0, dedykowana aplikacja, tryb sport i biuro.</p>
-        <div class="stock-row">
-          <div class="stock-top"><span>⚡ Zostało 11 szt.</span><span>80% sprzedane</span></div>
-          <div class="bar"><div class="bar-f" style="width:80%"></div></div>
-        </div>
         <div class="card-foot">
           <div><div class="price-now">119 zł</div><div class="price-was">199 zł (-40%)</div></div>
           <button class="add-btn" onclick="addCart('Korektor Postawy Smart Vibe',119,this)">+</button>
@@ -339,13 +350,8 @@ footer{background:var(--card);border-top:1px solid var(--border);padding:48px 6%
         <div class="img-overlay"></div>
       </div>
       <div class="card-body">
-        <div class="stars">★★★★★ <small>(144 opinii)</small></div>
         <h3>Ładowarka Bezprzewodowa 3w1</h3>
         <p class="desc">Ładuje telefon + słuchawki + zegarek jednocześnie. 15W szybkie ładowanie. Ultracienki design.</p>
-        <div class="stock-row">
-          <div class="stock-top"><span>⚡ Zostało 9 szt.</span><span>91% sprzedane</span></div>
-          <div class="bar"><div class="bar-f" style="width:91%"></div></div>
-        </div>
         <div class="card-foot">
           <div><div class="price-now">129 zł</div><div class="price-was">219 zł (-41%)</div></div>
           <button class="add-btn" onclick="addCart('Ładowarka Bezprzewodowa 3w1',129,this)">+</button>
@@ -360,13 +366,8 @@ footer{background:var(--card);border-top:1px solid var(--border);padding:48px 6%
         <div class="img-overlay"></div>
       </div>
       <div class="card-body">
-        <div class="stars">★★★★★ <small>(89 opinii)</small></div>
         <h3>Butelka z filtrem UV Pro</h3>
         <p class="desc">Sterylizuje wodę promieniami UV w 60 sekund. 500ml, ładowanie USB-C, stal nierdzewna 316L.</p>
-        <div class="stock-row">
-          <div class="stock-top"><span>Zostało 18 szt.</span><span>65% sprzedane</span></div>
-          <div class="bar"><div class="bar-f" style="width:65%"></div></div>
-        </div>
         <div class="card-foot">
           <div><div class="price-now">99 zł</div><div class="price-was">169 zł (-41%)</div></div>
           <button class="add-btn" onclick="addCart('Butelka z filtrem UV Pro',99,this)">+</button>
@@ -380,13 +381,8 @@ footer{background:var(--card);border-top:1px solid var(--border);padding:48px 6%
         <div class="img-overlay"></div>
       </div>
       <div class="card-body">
-        <div class="stars">★★★★☆ <small>(76 opinii)</small></div>
         <h3>Organizer Biurka Magnetic Pro</h3>
         <p class="desc">Modułowy system z aluminium i silikonu. Na kable, telefon, długopisy. Zero chaosu na biurku.</p>
-        <div class="stock-row">
-          <div class="stock-top"><span>Zostało 22 szt.</span><span>59% sprzedane</span></div>
-          <div class="bar"><div class="bar-f" style="width:59%"></div></div>
-        </div>
         <div class="card-foot">
           <div><div class="price-now">79 zł</div><div class="price-was">129 zł (-39%)</div></div>
           <button class="add-btn" onclick="addCart('Organizer Biurka Magnetic Pro',79,this)">+</button>
@@ -406,7 +402,7 @@ footer{background:var(--card);border-top:1px solid var(--border);padding:48px 6%
   <div class="steps">
     <div class="step"><div class="step-n">1</div><h4>Wybierz produkt</h4><p>Przeglądaj bestsellery, czytaj opinie, porównaj specyfikacje</p></div>
     <div class="step"><div class="step-n">2</div><h4>Dodaj do koszyka</h4><p>Kliknij +, wybierz ilość, skontroluj zamówienie</p></div>
-    <div class="step"><div class="step-n">3</div><h4>Zapłać bezpiecznie</h4><p>BLIK, karta Visa/MC, przelew lub płatność przy odbiorze</p></div>
+    <div class="step"><div class="step-n">3</div><h4>Potwierdź i zapłać</h4><p>Wyślemy dane do przelewu lub BLIK emailem po potwierdzeniu zamówienia</p></div>
     <div class="step"><div class="step-n">4</div><h4>Odbierz paczkę</h4><p>Śledzenie przesyłki na email. Dostawa 7–14 dni roboczych.</p></div>
   </div>
 </div>
@@ -484,9 +480,8 @@ footer{background:var(--card);border-top:1px solid var(--border);padding:48px 6%
       <li><a href="#">FAQ</a></li>
     </ul></div>
     <div class="fc"><h5>Kontakt</h5><ul>
-      <li><a href="#">📧 kontakt@smartnest.pl</a></li>
-      <li><a href="#">📞 +48 000 000 000</a></li>
-      <li><a href="#">💬 Chat na żywo</a></li>
+      <li><a href="mailto:smartnest.sklep@gmail.com">📧 smartnest.sklep@gmail.com</a></li>
+      <li><a href="#kontakt">📝 Formularz zamówienia</a></li>
       <li><a href="#">📍 Polska</a></li>
     </ul></div>
   </div>
@@ -501,6 +496,65 @@ footer{background:var(--card);border-top:1px solid var(--border);padding:48px 6%
   </div>
 </footer>
 
+<!-- MODAL ZAMÓWIENIE -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModalOutside(event)">
+  <div class="modal" id="modalBox">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div id="modalContent">
+      <h3>Złóż zamówienie</h3>
+      <p class="modal-sub">Wypełnij formularz — skontaktujemy się emailem w 24h, aby potwierdzić i ustalić płatność.</p>
+
+      <div class="cart-summary">
+        <h4>🛒 Twoje produkty</h4>
+        <div id="cartItems"></div>
+        <div class="cart-total"><span>Razem:</span><span id="cartTotalPrice"></span></div>
+      </div>
+
+      <form id="orderForm" action="https://formsubmit.co/bytomtattoo@gmail.com" method="POST" onsubmit="handleOrder(event)">
+        <input type="hidden" name="_subject" value="Nowe zamówienie SmartNest!">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="Produkty" id="hiddenCart">
+        <input type="hidden" name="Kwota" id="hiddenTotal">
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Imię i nazwisko *</label>
+            <input type="text" name="Imie_nazwisko" required placeholder="Jan Kowalski">
+          </div>
+          <div class="form-group">
+            <label>Telefon *</label>
+            <input type="tel" name="Telefon" required placeholder="+48 000 000 000">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Email *</label>
+          <input type="email" name="Email" required placeholder="twoj@email.pl">
+        </div>
+        <div class="form-group">
+          <label>Adres dostawy *</label>
+          <textarea name="Adres" required placeholder="ul. Przykładowa 1, 00-000 Warszawa"></textarea>
+        </div>
+        <div class="form-group">
+          <label>Uwagi do zamówienia</label>
+          <input type="text" name="Uwagi" placeholder="np. kolor, rozmiar, inne życzenia...">
+        </div>
+
+        <div class="pay-note">
+          💳 <strong>Płatność:</strong> po potwierdzeniu zamówienia wyślemy dane do przelewu bankowego lub link do BLIK. Nic nie płacisz teraz.
+        </div>
+
+        <button type="submit" class="btn-submit">✅ Zamawiam — skontaktujecie się ze mną →</button>
+      </form>
+    </div>
+    <div id="successContent" class="success-msg" style="display:none">
+      <div class="ok-icon">✅</div>
+      <h3>Zamówienie przyjęte!</h3>
+      <p>Dziękujemy! Odezwiemy się na podany email w ciągu 24 godzin z potwierdzeniem i danymi do płatności.<br><br>Koszyk SmartNest</p>
+    </div>
+  </div>
+</div>
+
 <div class="toast" id="toast"></div>
 
 <script>
@@ -509,9 +563,11 @@ let cart = [];
 
 // KOSZYK
 function addCart(name, price, btn) {
-  event.stopPropagation();
-  cart.push({name, price});
-  document.getElementById('cartCount').textContent = cart.length;
+  if (event) event.stopPropagation();
+  const existing = cart.find(i => i.name === name);
+  if (existing) { existing.qty++; } else { cart.push({name, price, qty:1}); }
+  const total = cart.reduce((s,i) => s + i.qty, 0);
+  document.getElementById('cartCount').textContent = total;
   const orig = btn.textContent;
   btn.textContent = '✓'; btn.style.background = '#00d4aa';
   setTimeout(() => { btn.textContent = orig; btn.style.background = ''; }, 1600);
@@ -519,9 +575,50 @@ function addCart(name, price, btn) {
 }
 
 function showCart() {
-  if (!cart.length) { toast('Koszyk jest pusty!'); return; }
-  const total = cart.reduce((s,i) => s+i.price, 0);
-  alert('🛒 Koszyk:\n\n' + cart.map(i=>`• ${i.name} — ${i.price} zł`).join('\n') + `\n\nRazem: ${total} zł\n\nSystem płatności wkrótce!`);
+  if (!cart.length) { toast('Koszyk jest pusty — dodaj produkt!'); return; }
+  openModal();
+}
+
+function openModal() {
+  const items = document.getElementById('cartItems');
+  const totalEl = document.getElementById('cartTotalPrice');
+  const total = cart.reduce((s,i) => s + i.price * i.qty, 0);
+  items.innerHTML = cart.map(i =>
+    `<div class="cart-item"><span>${i.qty}× ${i.name}</span><span>${i.price * i.qty} zł</span></div>`
+  ).join('');
+  totalEl.textContent = total + ' zł';
+  document.getElementById('hiddenCart').value = cart.map(i => `${i.qty}x ${i.name} (${i.price*i.qty} zł)`).join(', ');
+  document.getElementById('hiddenTotal').value = total + ' zł';
+  document.getElementById('modalContent').style.display = '';
+  document.getElementById('successContent').style.display = 'none';
+  document.getElementById('modalOverlay').classList.add('open');
+}
+
+function closeModal() {
+  document.getElementById('modalOverlay').classList.remove('open');
+}
+
+function closeModalOutside(e) {
+  if (e.target === document.getElementById('modalOverlay')) closeModal();
+}
+
+function handleOrder(e) {
+  e.preventDefault();
+  const form = document.getElementById('orderForm');
+  const data = new FormData(form);
+  fetch(form.action, { method: 'POST', body: data, headers: {'Accept': 'application/json'} })
+    .then(() => {
+      document.getElementById('modalContent').style.display = 'none';
+      document.getElementById('successContent').style.display = '';
+      cart = [];
+      document.getElementById('cartCount').textContent = 0;
+    })
+    .catch(() => {
+      document.getElementById('modalContent').style.display = 'none';
+      document.getElementById('successContent').style.display = '';
+      cart = [];
+      document.getElementById('cartCount').textContent = 0;
+    });
 }
 
 function filterCat(el, cat) {
